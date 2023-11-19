@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Bulbasaur",
+    "type": "Grass/Poison",
+    "image": "bulbasaur.jpg"
+  },
+  {
+    "name": "Charmander",
+    "type": "Fire",
+    "image": "charmander.jpg"
+  },
+  {
+    "name": "Squirtle",
+    "type": "Water",
+    "image": "squirtle.jpg"
+  }
+]
