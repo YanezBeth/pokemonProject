@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pokemonListElement = document.getElementById("pokemonList");
 
   // Fetch Pokemon data from JSON file
-  fetch("pokemonData.json")
+  fetch("./json/pokeData.json")
     .then((response) => response.json())
     .then((data) => {
       // Render Pokemon cards
