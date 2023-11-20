@@ -15,7 +15,6 @@
   "author": "Beth Yanez",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jwt-decode": "^4.0.0",
     "nodemon": "^3.0.1",
@@ -26,6 +25,7 @@
     "@babel/eslint-parser": "^7.23.3",
     "@babel/preset-env": "^7.23.3",
     "babel-eslint": "^10.1.0",
+    "dotenv": "^16.3.1",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.29.0",
