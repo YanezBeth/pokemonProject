@@ -1,37 +1,36 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const pokemonListElement = document.getElementById("pokemonList");
+import pokemon from "pokemontcgsdk";
 
-  // Fetch Pokemon data from JSON file
-  fetch("pokemonData.json")
-    .then((response) => response.json())
-    .then((data) => {
-      // Render Pokemon cards
-      data.forEach((pokemon) => {
-        const card = createPokemonCard(pokemon);
-        pokemonListElement.appendChild(card);
-      });
-    })
-    .catch((error) => console.error("Error fetching Pokemon data:", error));
+const baseURL = import.meta.env.VITE_POKE_URL;
+const apiKey = import.meta.env.VITE_API_KEY;
 
-  // Function to create a Pokemon card
-  function createPokemonCard(pokemon) {
-    const card = document.createElement("div");
-    card.classList.add("card");
+pokemon.configure({ apiKey });
 
-    const nameElement = document.createElement("h2");
-    nameElement.textContent = pokemon.name;
+// Function to fetch and display all Pokémon types
+async function fetchAndDisplayPokemonTypes() {
+  try {
+    // Set the API key in the headers
+    pokemon.configure({ apiKey });
 
-    const typeElement = document.createElement("p");
-    typeElement.textContent = `Type: ${pokemon.type}`;
+    const types = await pokemon.type.all();
+    console.log("Types response:", types);
 
-    const imageElement = document.createElement("img");
-    imageElement.src = pokemon.image;
-    imageElement.alt = pokemon.name;
+    // Display the types on the webpage
+    const typesContainer = document.getElementById("pokemonTypes");
+    typesContainer.innerHTML = "<h2>All Pokémon Types</h2>";
 
-    card.appendChild(nameElement);
-    card.appendChild(typeElement);
-    card.appendChild(imageElement);
+    const typesList = document.createElement("ul");
+    types.forEach((type) => {
+      // <-- Corrected this line
+      const typeItem = document.createElement("li");
+      typeItem.textContent = type;
+      typesList.appendChild(typeItem);
+    });
 
-    return card;
+    typesContainer.appendChild(typesList);
+  } catch (error) {
+    console.error("Error fetching Pokémon types:", error);
   }
-});
+}
+
+// Call the function to fetch and display Pokémon types
+fetchAndDisplayPokemonTypes();
