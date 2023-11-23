@@ -4,9 +4,9 @@
   --font-body: Raleway, Lato, sans-serif;
   --font-h: Merienda, Georgia, serif;
   /* colors */
-  --primary-color: #3B4CCA;
-  --secondary-color: #CC0000;
-  --tertiary-color: #FFDE00;
+  --primary-color: #3b4cca;
+  --secondary-color: #cc0000;
+  --tertiary-color: #ffde00;
   --light-grey: #ff0000;
   --dark-grey: #b3a125;
 
@@ -38,7 +38,13 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-base);
   color: black;
-  background-image: linear-gradient(to bottom right, #214159 20%, #8397ab, #E9E7AF, #FCA65F);
+  background-image: linear-gradient(
+    to bottom right,
+    #214159 20%,
+    #8397ab,
+    #e9e7af,
+    #fca65f
+  );
   background-repeat: no-repeat;
 }
 
@@ -55,7 +61,6 @@ h6 {
 
 h1 {
   font-size: 2.5rem;
-
 }
 
 h2 {
@@ -132,7 +137,7 @@ img {
 .main-right {
   background-color: var(--primary-color);
 }
- 
+
 .main-right ul,
 .main-right li {
   display: flex;
@@ -144,7 +149,6 @@ img {
   color: black;
   list-style-type: none;
 }
-
 
 .pokemon-card {
   border: 1px solid #ddd;
@@ -169,7 +173,6 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
-
 
 /* Design for Medium Screens */
 @media screen and (min-width: 768px) {
