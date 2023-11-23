@@ -8,23 +8,35 @@ pokemon.configure({ apiKey });
 // Function to fetch and display all Pokémon types
 async function fetchAndDisplayPokemonTypes() {
   try {
-    // Set the API key in the headers
+    // Set API key in the header per Pokemon TGC instructions
     pokemon.configure({ apiKey });
 
     const types = await pokemon.type.all();
-    console.log("Types response:", types);
+    //console.log("Types response:", types);
 
-    // Display the types on the webpage
+    // Display the types in rows of 4 within .main-right
     const typesContainer = document.getElementById("pokemonTypes");
-    typesContainer.innerHTML = "<h2>All Pokémon Types</h2>";
-
     const typesList = document.createElement("ul");
-    types.forEach((type) => {
-      // <-- Corrected this line
+    let row = document.createElement("li");
+
+    for (let i = 0; i < types.length; i++) {
       const typeItem = document.createElement("li");
-      typeItem.textContent = type;
-      typesList.appendChild(typeItem);
-    });
+      typeItem.textContent = types[i];
+
+      if (i % 4 === 0) {
+        if (row) {
+          typesList.appendChild(row);
+        }
+
+        row = document.createElement("li");
+      }
+
+      row.appendChild(typeItem);
+    }
+
+    if (row) {
+      typesList.appendChild(row);
+    }
 
     typesContainer.appendChild(typesList);
   } catch (error) {

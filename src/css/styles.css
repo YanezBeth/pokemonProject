@@ -1,37 +1,150 @@
-:root {
-  --font-body: Arial, Helvetica, sans-serif;
-  --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  /* colors */
-  --primary-color: #f0a868;
-  --secondary-color: #525b0f;
-  --tertiary-color: #a4b8c4;
-  --light-grey: #d0d0d0;
-  --dark-grey: #303030;
+@import url("https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Raleway:wght@400;700&display=swap");
 
-  /* sizes */
+:root {
+  --font-body: Raleway, Lato, sans-serif;
+  --font-h: Merienda, Georgia, serif;
+  /* colors */
+  --primary-color: #3B4CCA;
+  --secondary-color: #CC0000;
+  --tertiary-color: #FFDE00;
+  --light-grey: #ff0000;
+  --dark-grey: #b3a125;
+
+  /* small screen font sizes */
   --font-base: 18px;
   --small-font: 0.8em;
   --large-font: 1.2em;
+
+  /* large screen font sizes */
+  --font-base-lg: 20px;
+  --small-font-lg: 1em;
+  --large-font-lg: 1.5em;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#content {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 body {
-  margin: 0;
+  margin: 4px;
+  padding: 0;
   font-family: var(--font-body);
   font-size: var(--font-base);
-  color: var(--dark-grey);
+  color: black;
+  background-image: linear-gradient(to bottom right, #214159 20%, #8397ab, #E9E7AF, #FCA65F);
+  background-repeat: no-repeat;
 }
 
-.homepage-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
-  background-color: #f4f4f4;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-h);
+  text-align: center;
+  padding: 4px;
 }
+
+h1 {
+  font-size: 2.5rem;
+
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  padding: 10px;
+  margin-top: -16px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.header {
+  padding: 15px;
+  text-align: center;
+  background-color: var(--secondary-color);
+  font-family: var(--font-h);
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: var(--primary-color);
+}
+
+.nav a,
+.nav ul,
+.nav li {
+  padding: 3px 5px;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  list-style-type: none;
+}
+
+/* Change color on hover */
+.nav a:hover {
+  background-color: var(--tertiary-color);
+  color: black;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+
+.side {
+  background-color: var(--dark-grey);
+}
+
+.main-right {
+  background-color: var(--primary-color);
+}
+ 
+.main-right ul,
+.main-right li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  background-color: var(--tertiary-color);
+  text-decoration: none;
+  color: black;
+  list-style-type: none;
+}
+
 
 .pokemon-card {
   border: 1px solid #ddd;
@@ -51,3 +164,58 @@ body {
   max-width: 100%;
   border-radius: 6px;
 }
+
+footer {
+  font-size: var(--small-font);
+  padding: 1em;
+}
+
+
+/* Design for Medium Screens */
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 60px;
+  }
+
+  .nav,
+  .nav ul,
+  .nav li {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+  }
+
+  .side-column {
+    flex: 1;
+  }
+
+  .side {
+    background-color: var(--dark-grey);
+    height: 100%;
+  }
+
+  .main-column {
+    flex: 4;
+  }
+
+  #pokemonTypes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+  }
+
+  #pokemonTypes li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 3px;
+  }
+
+  .pokemon-card {
+    width: 40%;
+  }
+}
+
+/* Design for Larger Screens 
+@media only screen and (min-width: 992px) */
