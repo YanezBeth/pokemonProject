@@ -7,3 +7,4 @@ WDD330, Web Development, Personal Project for Fall 2023.
     3) Pulls and displays all Pokemon related to search, 
     and 4) that allows users to search for a Pokémon card
     and display the card image and information. 
+Netlify: https://main--lovely-panda-fe290b.netlify.app/
