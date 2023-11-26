@@ -1,48 +1,66 @@
 import pokemon from "pokemontcgsdk";
+import { loadHeaderFooter } from "./utils.mjs";
 
-const baseURL = import.meta.env.VITE_POKE_URL;
 const apiKey = import.meta.env.VITE_API_KEY;
 
 pokemon.configure({ apiKey });
 
-// Function to fetch and display all Pokémon types
-async function fetchAndDisplayPokemonTypes() {
-  try {
-    // Set API key in the header per Pokemon TGC instructions
-    pokemon.configure({ apiKey });
+// // Fetch all Pokémon types from Pokemon TCG API
+// async function fetchPokemonTypes() {
+//   try {
+//     return await pokemon.type.all();
+//   } catch (error) {
+//     console.error("Error fetching Pokémon types:", error);
+//     throw error; // Re-throw the error to handle it elsewhere if needed
+//   }
+// }
 
-    const types = await pokemon.type.all();
-    //console.log("Types response:", types);
+// // Create list of pokemon types
+// function createPokemonTypesList(types) {
+//   const typesList = document.createElement("ul");
 
-    // Display the types in rows of 4 within .main-right
-    const typesContainer = document.getElementById("pokemonTypes");
-    const typesList = document.createElement("ul");
-    let row = document.createElement("li");
+//   types.forEach((type) => {
+//     const typeItem = document.createElement("li");
 
-    for (let i = 0; i < types.length; i++) {
-      const typeItem = document.createElement("li");
-      typeItem.textContent = types[i];
+//     // Create a link for each type
+//     const typeLink = document.createElement("a");
+//     typeLink.textContent = type;
+//     typeLink.href = `/type/${type}`; // Update the URL as needed
 
-      if (i % 4 === 0) {
-        if (row) {
-          typesList.appendChild(row);
-        }
+//     // Append the link to the list item
+//     typeItem.appendChild(typeLink);
 
-        row = document.createElement("li");
-      }
+//     // Append the list item to the list
+//     typesList.appendChild(typeItem);
+//   });
 
-      row.appendChild(typeItem);
-    }
+//   return typesList;
+// }
+// // Add list on home index page
+// async function fetchPokemonTypeLinks() {
+//   try {
+//     const types = await fetchPokemonTypes();
+//     const typesContainer = document.getElementById("pokemonTypes");
+//     const typesList = createPokemonTypesList(types);
 
-    if (row) {
-      typesList.appendChild(row);
-    }
+//     // Add a click event listener to each type link
+//     typesList.querySelectorAll("a").forEach((typeLink) => {
+//       typeLink.addEventListener("click", (event) => {
+//         event.preventDefault();
+//         const selectedType = typeLink.textContent;
+//         // Navigate to a new page or section with Pokémon of the selected type
+//         // Example: window.location.href = `/type/${selectedType}`;
+//         console.log(`Selected type: ${selectedType}`);
+//       });
+//     });
 
-    typesContainer.appendChild(typesList);
-  } catch (error) {
-    console.error("Error fetching Pokémon types:", error);
-  }
-}
+//     typesContainer.appendChild(typesList);
+//   } catch (error) {
+//     console.error("Error handling Pokémon types:", error);
+//   }
+// }
 
-// Call the function to fetch and display Pokémon types
-fetchAndDisplayPokemonTypes();
+// // Call the function to fetch and create HTML structure for Pokémon types
+// fetchPokemonTypes();
+
+loadHeaderFooter();
