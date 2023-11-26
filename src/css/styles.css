@@ -1,24 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Raleway:wght@400;700&display=swap");
+/* Beth Yanez, Fall 2023, WDD330: Web Development, Personal Project */
+@import url("https://fonts.googleapis.com/css2?family=Vidaloka:wght@400;700&family=Raleway:wght@400;700&display=swap");
 
 :root {
   --font-body: Raleway, Lato, sans-serif;
-  --font-h: Merienda, Georgia, serif;
+  --font-headings: Vidaloka, serif;
   /* colors */
-  --primary-color: #3b4cca;
-  --secondary-color: #cc0000;
-  --tertiary-color: #ffde00;
-  --light-grey: #ff0000;
-  --dark-grey: #b3a125;
+  --primary-dark: #214159;
+  --text-background: #21415990;
+  --med-gray: #8397ab;
+  --pale-blue: #bbd7f2;
+  --primary-light: #e4ecf1;
+  --accent-1: #e9e7af;
+  --accent-2: #fca65f;
+  --accent-3: #cc0000;
 
-  /* small screen font sizes */
-  --font-base: 18px;
-  --small-font: 0.8em;
-  --large-font: 1.2em;
+  /* smaller screen font sizes */
+  --font-h1: 3rem;
+  --font-h2: 2rem;
+  --font-h3: 1.5rem;
+  --font-p: 1rem;
+  --small-font: 0.8rem;
 
-  /* large screen font sizes */
-  --font-base-lg: 20px;
-  --small-font-lg: 1em;
-  --large-font-lg: 1.5em;
+  --border-radius: 20px;
 }
 
 * {
@@ -27,72 +30,100 @@
   padding: 0;
 }
 
-#content {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-body {
-  margin: 4px;
-  padding: 0;
+a {
   font-family: var(--font-body);
-  font-size: var(--font-base);
-  color: black;
-  background-image: linear-gradient(
-    to bottom right,
-    #214159 20%,
-    #8397ab,
-    #e9e7af,
-    #fca65f
-  );
-  background-repeat: no-repeat;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-h);
-  text-align: center;
-  padding: 4px;
+  text-decoration: none;
+  color: var(--primary-dark);
+  cursor: pointer;
 }
 
 h1 {
-  font-size: 2.5rem;
+  background-image: linear-gradient(
+    to bottom,
+    var(--accent-3),
+    var(--accent-2),
+    var(--accent-3)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: var(--primary-dark);
+  font-size: var(--font-h1);
+  font-family: var(--font-headings);
+  text-align: center;
+  padding: 0.2em;
 }
 
 h2 {
-  font-size: 2rem;
+  background-image: linear-gradient(
+    to bottom,
+    var(--accent-3),
+    var(--accent-1),
+    var(--pale-blue),
+    var(--primary-dark)
+  );
+  font-size: var(--font-h2);
+  font-family: var(--font-headings);
+  margin: 1em 0 0 0;
+  text-align: center;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: var(--font-h3);
+  font-family: var(--font-headings);
+  width: 100%;
+  margin: 0.5em 0;
+  text-align: center;
 }
 
 p {
   padding: 10px;
-  margin-top: -16px;
+  margin: 0 4em;
+  font-size: var(--font-p);
+  background-color: var(--text-background);
+  color: var(--primary-light);
+  border-radius: var(--border-radius);
 }
 
 img {
   max-width: 100%;
 }
 
-.header {
-  padding: 15px;
+body {
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-p);
+  color: black;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--primary-dark),
+    var(--med-gray),
+    var(--pale-blue),
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3)
+  );
+  background-repeat: no-repeat;
+}
+
+#content {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.main-header {
+  padding: 25px;
   text-align: center;
-  background-color: var(--secondary-color);
-  font-family: var(--font-h);
-  font-weight: bold;
+  background-color: var(--primary-dark);
+  font-family: var(--font-headings);
 }
 
 .nav {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background-color: var(--primary-color);
+  background-color: var(--pale-blue);
 }
 
 .nav a,
@@ -100,15 +131,16 @@ img {
 .nav li {
   padding: 3px 5px;
   text-decoration: none;
-  color: white;
+  color: var(--primary-dark);
   text-align: center;
   list-style-type: none;
+  font-weight: bold;
 }
 
 /* Change color on hover */
-.nav a:hover {
-  background-color: var(--tertiary-color);
-  color: black;
+.nav li:hover {
+  background-color: var(--accent-1);
+  border-radius: var(--border-radius);
 }
 
 .row {
@@ -131,11 +163,7 @@ img {
 }
 
 .side {
-  background-color: var(--dark-grey);
-}
-
-.main-right {
-  background-color: var(--primary-color);
+  text-align: center;
 }
 
 .main-right ul,
@@ -143,16 +171,49 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
-  background-color: var(--tertiary-color);
   text-decoration: none;
-  color: black;
   list-style-type: none;
+}
+
+#pokemonTypes li a {
+  background-image: linear-gradient(
+    to top,
+    var(--primary-light),
+    var(--accent-2)
+  );
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--accent-2);
+  border: 2px solid var(--pale-blue);
+  border-radius: var(--border-radius);
+  padding: 10px;
+  font-weight: bold;
+}
+
+#pokemonTypes li {
+  background-color: var(--text-background);
+  border-radius: var(--border-radius);
+  margin: 2px;
+}
+
+.button {
+  background-color: var(--accent-1);
+  color: var(--primary-dark);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: var(--font-p);
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 8px solid var(--accent-2);
 }
 
 .pokemon-card {
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
   margin: 10px;
@@ -166,18 +227,26 @@ img {
 
 .pokemon-card img {
   max-width: 100%;
-  border-radius: 6px;
+  border-radius: var(--border-radius);
 }
 
 footer {
   font-size: var(--small-font);
+  font-family: var(--font-body);
   padding: 1em;
+  margin: 3em 0 0;
+  background-color: var(--primary-dark);
+  color: var(--pale-blue);
+  font-weight: bold;
 }
 
-/* Design for Medium Screens */
+/* Design for Medium Screens and larger */
 @media screen and (min-width: 768px) {
-  .header {
-    padding: 60px;
+  :root {
+    --font-h1: 4rem;
+    --font-h2: 2.5rem;
+    --font-h3: 2rem;
+    --font-p: 1.2rem;
   }
 
   .nav,
@@ -185,34 +254,55 @@ footer {
   .nav li {
     display: flex;
     justify-content: space-evenly;
-    padding: 10px;
+    padding: 7px;
   }
 
   .side-column {
     flex: 1;
   }
 
-  .side {
-    background-color: var(--dark-grey);
-    height: 100%;
-  }
-
-  .main-column {
-    flex: 4;
-  }
-
-  #pokemonTypes {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  .side,
+  .side p {
+    background-image: url("src/public/images/pokeball-png-45332.png");
+    background-color: var(--med-gray);
+    color: var(--primary-light);
+    margin: 2em 0.2em;
     padding: 10px;
   }
 
-  #pokemonTypes li {
+  .main-column {
     display: flex;
+    flex-wrap: wrap;
+    flex: 4;
+  }
+
+  .main-right ul,
+  .main-right li {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 3px;
+    justify-content: space-evenly;
+  }
+
+  #pokemonTypes li {
+    /* background-image: linear-gradient(
+      to top,
+      var(--primary-light),
+      var(--accent-2)
+    ); 
+    color: var(--primary-dark); */
+    border: 1px solid var(--accent-3);
+    border-radius: var(--border-radius);
+    margin: 5px;
+    padding: 10px;
+    width: 20%;
+  }
+
+  #pokemonTypes li a {
+    color: var(--primary-dark);
+    border: none;
+    padding: 10px;
+    font-weight: bold;
   }
 
   .pokemon-card {

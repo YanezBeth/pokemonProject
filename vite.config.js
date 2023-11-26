@@ -13,6 +13,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
+        type: resolve(__dirname, "src/pokemonByType/index.html"),
       },
     },
   },
