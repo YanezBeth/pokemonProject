@@ -55,13 +55,29 @@ export async function displayTypes() {
   }
 }
 
+// export async function allPokemonByType(type) {
+//     try {
+//       // Fetch Pokémon cards based on type
+//       const response = await pokemon.card.where({ types: type });
+//       return response.data;
+//     } catch (error) {
+//       console.error(`Error fetching Pokémon of type ${type}:`, error);
+//       throw error;
+//     }
+//   }
+
+// Function to fetch all Pokémon of a specific type
 export async function allPokemonByType(type) {
-    try {
-      // Fetch Pokémon cards based on type
-      const response = await pokemon.card.where({ types: type });
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching Pokémon of type ${type}:`, error);
-      throw error;
-    }
+  try {
+    // Use the where method to filter cards by type
+    const result = await pokemon.card.where({
+      q: `types:${type}`
+    });
+
+    // Return the data property from the result
+    return result.data;
+  } catch (error) {
+    console.error(`Error fetching Pokémon of type ${type}:`, error);
+    throw error;
   }
+}

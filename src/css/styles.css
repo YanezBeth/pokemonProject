@@ -211,7 +211,7 @@ body {
   border: 8px solid var(--accent-2);
 }
 
-.pokemon-card {
+/* .pokemon-card {
   border: 1px solid #ddd;
   border-radius: var(--border-radius);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -228,6 +228,25 @@ body {
 .pokemon-card img {
   max-width: 100%;
   border-radius: var(--border-radius);
+} */
+
+
+.pokemon-by-type {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pokemon-by-type li {
+  text-decoration: none;
+  color: var(--primary-light);
+  list-style-type: none;
+  padding: 1em;
+}
+.pokemon-by-type h3 {
+  text-align: center;
+  color: var(--primary-dark);
 }
 
 footer {
