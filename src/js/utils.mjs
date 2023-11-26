@@ -10,8 +10,12 @@ export function loadTemplate(path) {
       const html = await response.text();
       return html;
     }
+    else {
+      console.error(`Error loading template: ${path}`);
+    }
   };
 }
+
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();

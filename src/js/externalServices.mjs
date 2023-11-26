@@ -5,14 +5,6 @@ import {
   allPokemonByType
 } from "./pokemonTypes.mjs";
 
-import pokemon from "pokemontcgsdk";
-
-const apiKey =
-  import.meta.env.VITE_API_KEY;
-pokemon.configure({
-  apiKey
-});
-
 document.addEventListener("DOMContentLoaded", async () => {
   const category = getParam("category");
   if (category) {
@@ -27,12 +19,23 @@ async function displayPokemonByType(type) {
     const pokemonByTypeList = document.createElement("ul");
     pokemonByTypeList.id = "pokemon-by-type-list";
 
-    pokemonList.forEach((pokes) => {
+    pokemonList.forEach((pokemon) => {
       const pokemonItem = document.createElement("li");
-      pokemonItem.textContent = pokes.name;
-      const image = document.createElement("img");
-      image.src = pokemon.images.large;
-      pokemonItem.appendChild(image);
+
+      // Display the image if available
+      if (pokemon.images && pokemon.images.large) {
+        const image = document.createElement("img");
+        image.src = pokemon.images.small;
+        image.alt = pokemon.name;
+        pokemonItem.appendChild(image);
+      }
+
+      // Display the name
+      const name = document.createElement("h3");
+      name.textContent = pokemon.name;
+      pokemonItem.appendChild(name);
+
+      // Add other details or properties you want to display
 
       pokemonByTypeList.appendChild(pokemonItem);
     });
