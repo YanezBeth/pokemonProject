@@ -15,56 +15,102 @@ export async function fetchPokemonTypes() {
   }
 }
 
-// Create list of pokemon types
-export function typesListNLink(types) {
+/* Get the 1st found associated image for 
+each type to display on HOME page */
+export async function typeImage(type) {
+  try {
+    const pokemonOfType = await allPokemonByType(type);
+    // Ensure there's at least one Pokémon of the specified type
+    if (pokemonOfType.length > 0) {
+      // Use the image of the first Pokémon of the specified type
+      return pokemonOfType[0].images.small;
+    } else {
+      /* If there's not an image of a type found, 
+      use pokeball image */
+      return "./public/images/pokeball-png-45332.png";
+    }
+  } catch (error) {
+    console.error("Error fetching image for ${type}:", error);
+    throw error;
+  }
+}
+
+// Create a list of pokemon types with images for the Home page
+export async function typesListNLink(types) {
+  // Create an unordered list of types
   const typesList = document.createElement("ul");
-  types.forEach((type) => {
+
+  /* Took too long when it was getting images singularily, 
+  get all type images concurrently with a promise */
+  const imgPromises = types.map(async (type) => {
+    const typeImg = await typeImage(type);
+    return {
+      type,
+      img: typeImg
+    };
+  });
+
+  const typeImages = await Promise.all(imgPromises);
+
+  for (const {
+      type,
+      img
+    } of typeImages) {
+    // Add each type to the li element, carousel, as an item
+    // For carousel
+    /* This line doesn't work: 
+    const typeItem = document.createElement("li id='card-type'");
+    The id or class must be set in a seperate step because 
+    the createElement function only accepts the tag name as an arg */
     const typeItem = document.createElement("li");
-    // Create a link for each type
+    //typeItem.classList = "card-type"; //WRONG LOCATION
+
+    // Create image element
+    const typeImageElement = document.createElement("img");
+    typeImageElement.src = img;
+    typeImageElement.alt = `${type} Type`;
+
+    // Create a link for each type by passing in the type
     const typeLink = document.createElement("a");
     typeLink.textContent = type;
     typeLink.href = `/type/${type}`;
-    // Add the link to the list of pokemon
+
+    // Append image and link to the list
+    typeItem.appendChild(typeImageElement);
     typeItem.appendChild(typeLink);
+
     // Add the type to the list
-    typesList.appendChild(typeItem);
-  });
+    typesList.appendChild(typeItem).classList.add("card-type");
+    //typesList.appendChild(typeItem);
+  }
   return typesList;
 }
 
-// Add list on home index page with working links to each category/type 
+/* Add list on HOME "src/index.html" page with 
+working links to each category/type and associated image */
 export async function displayTypes() {
   try {
     const types = await fetchPokemonTypes();
-    console.log(`Selected type: ${types}`);
-    const typesContainer = document.getElementById("pokemonTypes");
-    const typesList = typesListNLink(types);
+    const typesContainer = document.getElementById("pokemon-types");
+    const typesList = await typesListNLink(types);
+
     // Add a click event listener to each types link
     typesList.querySelectorAll("a").forEach((typeLink) => {
       typeLink.addEventListener("click", (event) => {
         event.preventDefault();
         const selectedType = typeLink.textContent;
+
         // Go to pokemonByType/index.html and display all associated pokemon of that type
         window.location.href = `/pokemonByType/index.html?category=${selectedType}`;
         console.log(`Selected type: ${selectedType}`);
       });
     });
+
     typesContainer.appendChild(typesList);
   } catch (error) {
     console.error("Error displaying Pokémon types:", error);
   }
 }
-
-// export async function allPokemonByType(type) {
-//     try {
-//       // Fetch Pokémon cards based on type
-//       const response = await pokemon.card.where({ types: type });
-//       return response.data;
-//     } catch (error) {
-//       console.error(`Error fetching Pokémon of type ${type}:`, error);
-//       throw error;
-//     }
-//   }
 
 // Function to fetch all Pokémon of a specific type
 export async function allPokemonByType(type) {
@@ -74,7 +120,7 @@ export async function allPokemonByType(type) {
       q: `types:${type}`
     });
 
-    // Return the data property from the result
+    // Return all the pokemon of that type from the result
     return result.data;
   } catch (error) {
     console.error(`Error fetching Pokémon of type ${type}:`, error);
