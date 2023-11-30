@@ -39,7 +39,6 @@ export async function typeImage(type) {
 export async function typesListNLink(types) {
   // Create an unordered list of types
   const typesList = document.createElement("ul");
-
   /* Took too long when it was getting images singularily, 
   get all type images concurrently with a promise */
   const imgPromises = types.map(async (type) => {
@@ -63,7 +62,7 @@ export async function typesListNLink(types) {
     The id or class must be set in a seperate step because 
     the createElement function only accepts the tag name as an arg */
     const typeItem = document.createElement("li");
-    //typeItem.classList = "card-type"; //WRONG LOCATION
+    typeItem.classList = "card-type"; 
 
     // Create image element
     const typeImageElement = document.createElement("img");
@@ -72,6 +71,7 @@ export async function typesListNLink(types) {
 
     // Create a link for each type by passing in the type
     const typeLink = document.createElement("a");
+    typeItem.classList.add("card-type-a"); // must have .add, otherwise it will overwite the previous class
     typeLink.textContent = type;
     typeLink.href = `/type/${type}`;
 
@@ -80,7 +80,7 @@ export async function typesListNLink(types) {
     typeItem.appendChild(typeLink);
 
     // Add the type to the list
-    typesList.appendChild(typeItem).classList.add("card-type");
+    typesList.appendChild(typeItem);
     //typesList.appendChild(typeItem);
   }
   return typesList;
