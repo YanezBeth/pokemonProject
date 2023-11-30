@@ -15,8 +15,10 @@
         <div class="row">
           <div class="side-column">
             <div class="side">
-              <h3>Sign up today!</h3>
-              <p>Register for an account to save your favorite Pokémon.</p>
+              <h3>Gotta Catch 'Em All!</h3>
+              <p>
+                Register for an account today to save your favorite Pokémon.
+              </p>
             </div>
           </div>
           <div class="main-column">
@@ -25,15 +27,24 @@
               <h3>Types of Pokémon</h3>
               <div class="pokemon-carousel">
                 <!-- A container for list of Pokémon types -->
-                <div id="pokemon-types" class="pokemon-types"></div>
+                <div id="pokemon-types" class="pokemon-types fade"></div>
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
               </div>
             </div>
+          </div>
+          <br />
+          <div style="text-align: center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
           </div>
         </div>
       </div>
       <footer id="main-footer"></footer>
     </div>
+    <script src="/js/pokemonTypes.js" type="module"></script>
     <script src="/js/main.js" type="module"></script>
-    <script src="./js/pokemonTypes.js" type="module"></script>
   </body>
 </html>

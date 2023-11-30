@@ -1,18 +1,23 @@
-/* Beth Yanez, Fall 2023, WDD330: Web Development, Personal Project */
+/* Beth Yanez, Fall 2023, WDD330: Web Development, Personal Project 
+Resources: I used this article for help with creating the image carousel: https://css-tricks.com/css-only-carousel/
+and https://www.w3schools.com/howto/howto_js_slideshow.asp
+
+*/
 @import url("https://fonts.googleapis.com/css2?family=Vidaloka:wght@400;700&family=Raleway:wght@400;700&display=swap");
 
 :root {
   --font-body: Raleway, Lato, sans-serif;
   --font-headings: Vidaloka, serif;
   /* colors */
-  --black: #191919;
-  --black-alpha50: #19191950;
-  --black-alpha25: #19191925;
-  --red: #f44336;
-  --white: #ffffff;
-  --blue: #007bff;
-  --green: #28a745;
-  --yellow: #ffc107;
+  --primary-color: #4caf50;
+  --secondary-color: #ffc107;
+  --accent-color: #f44336;
+  --text-color: #e0e0e0;
+  --background-color: #1a1a1a;
+  --content-box-bg: rgba(0, 0, 0, 0.5);
+  --card-bg: #252525;
+  --nav-gradient-start: #0f2027;
+  --nav-gradient-end: #2c5364;
 
   /* smaller screen font sizes */
   --font-h1: 3rem;
@@ -28,6 +33,34 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-color: transparent transparent;
+  /* thumb and track color */
+  scrollbar-width: 0px;
+}
+
+*::-webkit-scrollbar {
+  width: 0;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -38,13 +71,7 @@ a {
 }
 
 h1 {
-  background-image: linear-gradient(
-    to bottom,
-    var(--red),
-    #ffffff70,
-    var(--white)
-  );
-  background-color: var(--red);
+  color: var(--text-color);
   font-size: var(--font-h1);
   font-family: var(--font-headings);
   text-align: center;
@@ -52,16 +79,7 @@ h1 {
 }
 
 h2 {
-  background-image: linear-gradient(
-    to bottom right,
-    var(--black),
-    var(--red),
-    var(--black)
-  );
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--text-color);
   font-size: var(--font-h2);
   font-family: var(--font-headings);
   margin: 1em 0 0 0;
@@ -69,6 +87,7 @@ h2 {
 }
 
 h3 {
+  color: var(--text-color);
   font-size: var(--font-h3);
   font-family: var(--font-headings);
   width: 100%;
@@ -77,35 +96,21 @@ h3 {
 }
 
 p {
-  padding: 10px;
-  margin: 0 4em;
-  font-size: var(--font-p);
-  background-color: var(--text-background);
-  color: var(--primary-light);
-  border-radius: var(--border-radius);
+  color: var(--text-color);
 }
 
 body {
   padding: 0;
   font-family: var(--font-body);
   font-size: var(--font-p);
-  color: black;
-  background-image: linear-gradient(
-    to right,
-    var(--black),
-    var(--black-alpha50),
-    var(--black-alpha25),
-    var(--white),
-    var(--black-alpha25),
-    var(--black-alpha50),
-    var(--black)
-  );
-  background-repeat: no-repeat;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
 #content {
-  max-width: 960px;
-  margin: 0 auto;
+  background-color: var(--content-box-bg);
+  border: 1px solid #333;
+  padding: 20px;
 }
 
 /* *** Header styling *** */
@@ -120,141 +125,133 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background-image: linear-gradient(
+  padding: 10px 0;
+  background: linear-gradient(
     to right,
-    var(--black),
-    var(--white),
-    var(--black)
+    var(--nav-gradient-start),
+    var(--nav-gradient-end)
   );
 }
 
 .nav a,
 .nav ul,
 .nav li {
-  padding: 3px 5px;
+  color: var(--text-color);
   text-decoration: none;
-  color: var(--black);
-  text-align: center;
-  list-style-type: none;
-  font-weight: bold;
+  padding: 10px 15px;
+  display: inline-block;
 }
 
 /* Change color on hover */
 .nav li:hover,
 .nav a:hover {
-  background-color: var(--black);
-  /*border-radius: var(--border-radius);*/
-  color: var(--white);
+  background-color: var(--secondary-color);
 }
 
 /* *** HOME, src/index.html page styling *** */
-/* .row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+.pokemon-types {
+  max-width: 90%;
+  overflow: hidden;
+}
+
+.main-column img {
   width: 100%;
+  height: auto;
 }
 
-.side-column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-}
-
-.main-column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-}
-
-.side {
-  text-align: center;
-  color: var(--white);
-  background-color: var(--blue);
-  background-image: linear-gradient(to right,
-      var(--black),
-      var(--blue),
-      var(--black));
-}
-
-.main-right ul,
-.main-right li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  list-style-type: none;
-} */
-
-/* *** List of types of Pokemon styling *** */
-/* #pokemonTypes li a {
-  background-image: linear-gradient(to top,
-      var(--primary-light),
-      var(--accent-2));
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--accent-2);
-  border: 2px solid var(--pale-blue);
-  border-radius: var(--border-radius);
-  padding: 10px;
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
   font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
 }
 
-#pokemonTypes li {
-  background-color: var(--text-background);
-  border-radius: var(--border-radius);
-  margin: 2px;
-} */
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
 
-/* .pokemon-list {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .card-type {
   text-align: center;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px var(--yellow);
-  transition: transform 0.3s ease-in-out;
-}
-
-.card-type:hover {
-  transform: scale(1.05);
+  display: inline-block;
+  scroll-snap-align: start;
 }
 
 .card-type img {
   max-width: 100%;
   height: auto;
-
 }
 
-.card-type p {
-  margin-top: 10px;
-  font-weight: bold;
-} */
-#pokemon-types {
-  max-width: 100%;
-  position: relative;
-  margin: auto;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  white-space: nowrap;
+.card-type-a {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
 }
 
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* 
 .card-type {
   text-align: center;
   padding: 10px;
   background-color: #fff;
   box-shadow: 0 0 10px var(--yellow);
   transition: transform 0.3s ease-in-out;
-  display: inline-block; /* Make each card take the full width of the container */
-  scroll-snap-align: start; /* Snap to the start of each card */
+  display: inline-block;
+  scroll-snap-align: start;
 }
 
 #pokemon-types::after {
@@ -277,25 +274,28 @@ body {
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
-  background-color: var(--blue); /* Set the background color as desired */
+  background-color: var(--blue);
 }
 
 #pokemon-types .next {
   right: 0;
   border-radius: 3px 0 0 3px;
-}
+} */
 
 .button {
-  background-color: var(--accent-1);
-  color: var(--primary-dark);
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: var(--font-p);
-  margin: 4px 2px;
+  font-size: 16px;
   cursor: pointer;
-  border: 8px solid var(--accent-2);
+}
+
+.button:hover {
+  background-color: var(--secondary-color);
 }
 
 /* *** Styling for Pokemon cards displayed on type pages *** */
