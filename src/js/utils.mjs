@@ -9,8 +9,7 @@ export function loadTemplate(path) {
     if (response.ok) {
       const html = await response.text();
       return html;
-    }
-    else {
+    } else {
       console.error(`Error loading template: ${path}`);
     }
   };

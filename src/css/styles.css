@@ -1,6 +1,8 @@
 /* Beth Yanez, Fall 2023, WDD330: Web Development, Personal Project 
-Resources: I used this article for help with creating the image carousel: https://css-tricks.com/css-only-carousel/
+Resources: 
+  Image Carousel: https://css-tricks.com/css-only-carousel/
 and https://www.w3schools.com/howto/howto_js_slideshow.asp
+  Fireflies: https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/#
 
 */
 @import url("https://fonts.googleapis.com/css2?family=Vidaloka:wght@400;700&family=Raleway:wght@400;700&display=swap");
@@ -33,53 +35,27 @@ and https://www.w3schools.com/howto/howto_js_slideshow.asp
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scrollbar-color: transparent transparent;
-  /* thumb and track color */
-  scrollbar-width: 0px;
-}
-
-*::-webkit-scrollbar {
-  width: 0;
-}
-
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background: transparent;
-  border: none;
-}
-
-* {
-  -ms-overflow-style: none;
-}
-
-ol,
-ul,
-li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 a {
   font-family: var(--font-body);
   text-decoration: none;
-  color: var(--green);
+  color: var(--accent-color);
   cursor: pointer;
+  font-weight: bold;
 }
 
 h1 {
-  color: var(--text-color);
+  color: var(--accent-color);
   font-size: var(--font-h1);
   font-family: var(--font-headings);
   text-align: center;
   padding: 0.2em;
+  letter-spacing: 2px;
 }
 
 h2 {
-  color: var(--text-color);
+  color: var(--primary-color);
   font-size: var(--font-h2);
   font-family: var(--font-headings);
   margin: 1em 0 0 0;
@@ -87,7 +63,7 @@ h2 {
 }
 
 h3 {
-  color: var(--text-color);
+  color: var(--secondary-color);
   font-size: var(--font-h3);
   font-family: var(--font-headings);
   width: 100%;
@@ -115,9 +91,15 @@ body {
 
 /* *** Header styling *** */
 .main-header {
-  padding: 25px;
+  width: 100%;
+  height: 90px;
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  background-color: var(--red);
   font-family: var(--font-headings);
 }
 
@@ -145,13 +127,17 @@ body {
 /* Change color on hover */
 .nav li:hover,
 .nav a:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
 /* *** HOME, src/index.html page styling *** */
 .pokemon-types {
-  max-width: 90%;
-  overflow: hidden;
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
 }
 
 .main-column img {
@@ -159,128 +145,222 @@ body {
   height: auto;
 }
 
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+.firefly ul {
+  list-style: none;
 }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.card-type {
-  text-align: center;
-  display: inline-block;
-  scroll-snap-align: start;
-}
-
-.card-type img {
-  max-width: 100%;
-  height: auto;
-}
-
-.card-type-a {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-  text-decoration: none;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
+.fireflies li {
   border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active,
-.dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0.4;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-/* 
-.card-type {
-  text-align: center;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px var(--yellow);
-  transition: transform 0.3s ease-in-out;
-  display: inline-block;
-  scroll-snap-align: start;
-}
-
-#pokemon-types::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-#pokemon-types .prev,
-#pokemon-types .next {
-  cursor: pointer;
+  /*glowing effect for the fireflies: use a yellow background color 
+  along with radial-gradient and box shadow */
+  background-color: rgb(255, 255, 73);
+  background-image: radial-gradient(
+    rgb(249, 206, 36) 5%,
+    rgb(254, 179, 4) 25%,
+    rgb(252, 191, 7) 60%
+  );
+  box-shadow:
+    0 0 5px 2px rgb(250, 193, 93),
+    0 0 20px 10px rgb(255, 228, 140),
+    0 0 40px 15px rgb(255, 219, 41);
+  height: 5px;
+  width: 5px;
+  top: -20px;
   position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  background-color: var(--blue);
+  /* give the Cubic Bezier curve movement and set the animation in an infinite state */
+  animation:
+    leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1),
+    updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1),
+    blinking 3s infinite;
 }
 
-#pokemon-types .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-} */
+/* move the fireflies at different speeds */
+.fireflies li:nth-of-type(1) {
+  animation-delay: 1s;
+  animation-duration: 65s, 81s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(2) {
+  animation-delay: 0.5s;
+  animation-duration: 80s, 75s, 0.01s;
+}
+
+.fireflies li:nth-of-type(3) {
+  animation-delay: 1.5s;
+  animation-duration: 70s, 60s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(4) {
+  animation-delay: 2.5s;
+  animation-duration: 90s, 80s, 0.01s;
+}
+
+.fireflies li:nth-of-type(5) {
+  animation-delay: 0.3s;
+  animation-duration: 55s, 75s, 0.01s;
+}
+
+.fireflies li:nth-of-type(6) {
+  animation-delay: 2.2s;
+  animation-duration: 79s, 63s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(7) {
+  animation-delay: 0.9s;
+  animation-duration: 70s, 80s, 0.01s;
+}
+
+.fireflies li:nth-of-type(8) {
+  animation-delay: 1.6s;
+  animation-duration: 50s, 40s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(9) {
+  animation-delay: 1.8s;
+  animation-duration: 77s, 88s, 0.01s;
+}
+
+.fireflies li:nth-of-type(10) {
+  animation-delay: 3s;
+  animation-duration: 87s, 73s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+/* last 10 */
+.fireflies li:nth-of-type(11) {
+  animation-delay: 1s;
+  animation-duration: 60s, 78s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(12) {
+  animation-delay: 0.5s;
+  animation-duration: 85s, 80s, 0.01s;
+}
+
+.fireflies li:nth-of-type(13) {
+  animation-delay: 1.5s;
+  animation-duration: 75s, 66s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(14) {
+  animation-delay: 2.5s;
+  animation-duration: 87s, 75s, 0.01s;
+}
+
+.fireflies li:nth-of-type(15) {
+  animation-delay: 0.3s;
+  animation-duration: 69s, 85s, 0.01s;
+}
+
+.fireflies li:nth-of-type(16) {
+  animation-delay: 2.2s;
+  animation-duration: 80s, 77s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(17) {
+  animation-delay: 0.9s;
+  animation-duration: 65s, 88s, 0.01s;
+}
+
+.fireflies li:nth-of-type(18) {
+  animation-delay: 1.6s;
+  animation-duration: 59s, 63s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+.fireflies li:nth-of-type(19) {
+  animation-delay: 1.8s;
+  animation-duration: 88s, 79s, 0.01s;
+}
+
+.fireflies li:nth-of-type(20) {
+  animation-delay: 3s;
+  animation-duration: 59s, 75s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+/* Use step by step by step ANIMATION to create the fireflies movement */
+/* create left/right movement */
+@keyframes leftright {
+  0%,
+  100% {
+    left: 80%;
+  }
+
+  16.666% {
+    left: 95%;
+  }
+
+  33.333% {
+    left: 10%;
+  }
+
+  50% {
+    left: 60%;
+  }
+
+  66.666% {
+    left: 70%;
+  }
+
+  83.333% {
+    left: 5%;
+  }
+}
+
+/* create up/down movement */
+@keyframes updown {
+  0%,
+  100% {
+    top: 10px;
+  }
+
+  25% {
+    top: 90%;
+  }
+
+  50% {
+    top: 50%;
+  }
+
+  75% {
+    top: 95%;
+  }
+}
+
+/* create blinking effect */
+@keyframes blinking {
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px 2px rgb(250, 193, 93),
+      0 0 10px 5px rgb(255, 242, 63),
+      0 0 30px 10px rgb(255, 219, 41);
+    height: 0;
+    width: 0;
+  }
+
+  50% {
+    box-shadow:
+      0 0 5px 2px rgb(250, 193, 93),
+      0 0 20px 10px rgb(255, 228, 140),
+      0 0 40px 15px rgb(255, 219, 41);
+  }
+
+  75% {
+    box-shadow:
+      0 0 0px 0px rgb(250, 193, 93),
+      0 0 0px 0px rgb(255, 228, 140),
+      0 0 0px 0px rgb(255, 219, 41);
+  }
+}
 
 .button {
   background-color: var(--primary-color);
@@ -328,7 +408,7 @@ footer {
   font-weight: bold;
 }
 
-/* Design for Medium Screens and larger */
+/* Design for medium screens and larger */
 @media screen and (min-width: 768px) {
   :root {
     --font-h1: 4rem;
@@ -351,11 +431,12 @@ footer {
 
   .side,
   .side p {
-    background-image: url("src/public/images/pokeball-png-45332.png");
-    background-color: var(--med-gray);
-    color: var(--primary-light);
+    background-image: url("./public/images/pokeball-png-45332.png");
+    background-color: var(--nav-gradient-end);
+    color: var(--text-color);
     margin: 2em 0.2em;
     padding: 10px;
+    text-align: center;
   }
 
   .main-column {
@@ -371,32 +452,4 @@ footer {
     flex-direction: row;
     justify-content: space-evenly;
   }
-
-  #pokemonTypes li {
-    /* background-image: linear-gradient(
-      to top,
-      var(--primary-light),
-      var(--accent-2)
-    ); 
-    color: var(--primary-dark); */
-    border: 1px solid var(--accent-3);
-    border-radius: var(--border-radius);
-    margin: 5px;
-    padding: 10px;
-    width: 20%;
-  }
-
-  #pokemonTypes li a {
-    color: var(--primary-dark);
-    border: none;
-    padding: 10px;
-    font-weight: bold;
-  }
-
-  .pokemon-card {
-    width: 40%;
-  }
 }
-
-/* Design for Larger Screens 
-@media only screen and (min-width: 992px) */

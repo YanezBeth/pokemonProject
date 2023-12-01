@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+//display all the pokemon of a specific type
 async function displayPokemonByType(type) {
   try {
     const pokemonList = await allPokemonByType(type);
@@ -35,7 +36,6 @@ async function displayPokemonByType(type) {
       name.textContent = pokemon.name;
       pokemonItem.appendChild(name);
 
-      // Add other details or properties you want to display
 
       pokemonByTypeList.appendChild(pokemonItem);
     });
