@@ -3,6 +3,7 @@ Resources:
   Image Carousel: https://css-tricks.com/css-only-carousel/
 and https://www.w3schools.com/howto/howto_js_slideshow.asp
   Fireflies: https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/#
+  Gradients: https://www.doozytools.com/dev-tools/css-gradient-generator
 
 */
 @import url("https://fonts.googleapis.com/css2?family=Vidaloka:wght@400;700&family=Raleway:wght@400;700&display=swap");
@@ -11,15 +12,18 @@ and https://www.w3schools.com/howto/howto_js_slideshow.asp
   --font-body: Raleway, Lato, sans-serif;
   --font-headings: Vidaloka, serif;
   /* colors */
-  --primary-color: #4caf50;
-  --secondary-color: #ffc107;
-  --accent-color: #f44336;
-  --text-color: #e0e0e0;
-  --background-color: #1a1a1a;
-  --content-box-bg: rgba(0, 0, 0, 0.5);
-  --card-bg: #252525;
-  --nav-gradient-start: #0f2027;
-  --nav-gradient-end: #2c5364;
+  --text-color: #f5f3f4;
+  --main-grad1: #0f2027;
+  --main-grad2: #151d20;
+  --main-grad3: #161a1d;
+  --main-lighter: #224250;
+  --accent-green: #c2e5c8;
+  --accent-green-alpha: #c2e5c870;
+  --nav-grad1: #477b7180;
+  --nav-grad2: #31474a80;
+  --accent-yellow: #f8c633;
+  --accent-red: #fb3640;
+  --card-bg: #18313c;
 
   /* smaller screen font sizes */
   --font-h1: 3rem;
@@ -40,13 +44,13 @@ and https://www.w3schools.com/howto/howto_js_slideshow.asp
 a {
   font-family: var(--font-body);
   text-decoration: none;
-  color: var(--accent-color);
+  color: var(--text-color);
   cursor: pointer;
   font-weight: bold;
 }
 
 h1 {
-  color: var(--accent-color);
+  color: var(--accent-red);
   font-size: var(--font-h1);
   font-family: var(--font-headings);
   text-align: center;
@@ -55,7 +59,7 @@ h1 {
 }
 
 h2 {
-  color: var(--primary-color);
+  color: var(--accent-green);
   font-size: var(--font-h2);
   font-family: var(--font-headings);
   margin: 1em 0 0 0;
@@ -63,7 +67,7 @@ h2 {
 }
 
 h3 {
-  color: var(--secondary-color);
+  color: var(--accent-green);
   font-size: var(--font-h3);
   font-family: var(--font-headings);
   width: 100%;
@@ -80,11 +84,15 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-p);
   color: var(--text-color);
-  background-color: var(--background-color);
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--main-grad1),
+    var(--main-grad2),
+    var(--main-grad3)
+  );
 }
 
 #content {
-  background-color: var(--content-box-bg);
   border: 1px solid #333;
   padding: 20px;
 }
@@ -95,8 +103,8 @@ body {
   height: 90px;
   position: absolute;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -104,14 +112,16 @@ body {
 }
 
 .nav {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 10px;
   margin: 0;
   padding: 10px 0;
-  background: linear-gradient(
-    to right,
-    var(--nav-gradient-start),
-    var(--nav-gradient-end)
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--nav-grad1),
+    var(--nav-grad2),
+    var(--main-grad3)
   );
 }
 
@@ -120,24 +130,90 @@ body {
 .nav li {
   color: var(--text-color);
   text-decoration: none;
+  list-style: none;
   padding: 10px 15px;
-  display: inline-block;
+  text-align: center;
 }
 
 /* Change color on hover */
 .nav li:hover,
 .nav a:hover {
-  background-color: var(--primary-color);
+  background-color: var(--accent-yellow);
+  color: var(--main-grad1);
+  border-radius: var(--border-radius);
 }
 
 /* *** HOME, src/index.html page styling *** */
-.pokemon-types {
-  max-width: 100%;
+
+.side-column {
+  display: grid;
+  background-color: var(--accent-green-alpha);
+  border-radius: var(--border-radius);
+}
+
+.side,
+.side p {
+  background-image: url("./public/images/pokeball-png-45332.png");
+  color: var(--main-grad1);
+  margin: 2em 0.2em;
+  padding: 10px;
+  text-align: center;
+}
+
+.side h3 {
+  text-align: center;
+  color: var(--accent-yellow);
+}
+
+/* CSS for the carousel container */
+.pokemon-types ul,
+#pokemon-types > ul {
+  width: 100%;
+  overflow: hidden;
   position: relative;
-  margin: auto;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  white-space: nowrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+/* CSS for the carousel images */
+.card-type img,
+.card-type a,
+.card-type li:nth-child() {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation: carouselAnimation 10s infinite;
+}
+
+#pokemon-types > ul > li:nth-child() > a {
+  text-align: center;
+}
+
+/* CSS animation for the carousel */
+@keyframes carouselAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  33.33% {
+    opacity: 1;
+  }
+
+  53.33% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .main-column img {
@@ -147,6 +223,9 @@ body {
 
 .firefly ul {
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5px, 10px));
+  grid-gap: 5px;
 }
 
 .fireflies li {
@@ -171,7 +250,7 @@ body {
   animation:
     leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1),
     updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1),
-    blinking 3s infinite;
+    blinking 8s ease 2s infinite;
 }
 
 /* move the fireflies at different speeds */
@@ -211,79 +290,6 @@ body {
 .fireflies li:nth-of-type(7) {
   animation-delay: 0.9s;
   animation-duration: 70s, 80s, 0.01s;
-}
-
-.fireflies li:nth-of-type(8) {
-  animation-delay: 1.6s;
-  animation-duration: 50s, 40s, 0.01s;
-  animation-fill-mode: backwards, backwards;
-}
-
-.fireflies li:nth-of-type(9) {
-  animation-delay: 1.8s;
-  animation-duration: 77s, 88s, 0.01s;
-}
-
-.fireflies li:nth-of-type(10) {
-  animation-delay: 3s;
-  animation-duration: 87s, 73s, 0.01s;
-  animation-fill-mode: backwards, backwards;
-}
-
-/* last 10 */
-.fireflies li:nth-of-type(11) {
-  animation-delay: 1s;
-  animation-duration: 60s, 78s, 0.01s;
-  animation-fill-mode: backwards, backwards;
-}
-
-.fireflies li:nth-of-type(12) {
-  animation-delay: 0.5s;
-  animation-duration: 85s, 80s, 0.01s;
-}
-
-.fireflies li:nth-of-type(13) {
-  animation-delay: 1.5s;
-  animation-duration: 75s, 66s, 0.01s;
-  animation-fill-mode: backwards, backwards;
-}
-
-.fireflies li:nth-of-type(14) {
-  animation-delay: 2.5s;
-  animation-duration: 87s, 75s, 0.01s;
-}
-
-.fireflies li:nth-of-type(15) {
-  animation-delay: 0.3s;
-  animation-duration: 69s, 85s, 0.01s;
-}
-
-.fireflies li:nth-of-type(16) {
-  animation-delay: 2.2s;
-  animation-duration: 80s, 77s, 0.01s;
-  animation-fill-mode: backwards, backwards;
-}
-
-.fireflies li:nth-of-type(17) {
-  animation-delay: 0.9s;
-  animation-duration: 65s, 88s, 0.01s;
-}
-
-.fireflies li:nth-of-type(18) {
-  animation-delay: 1.6s;
-  animation-duration: 59s, 63s, 0.01s;
-  animation-fill-mode: backwards, backwards;
-}
-
-.fireflies li:nth-of-type(19) {
-  animation-delay: 1.8s;
-  animation-duration: 88s, 79s, 0.01s;
-}
-
-.fireflies li:nth-of-type(20) {
-  animation-delay: 3s;
-  animation-duration: 59s, 75s, 0.01s;
-  animation-fill-mode: backwards, backwards;
 }
 
 /* Use step by step by step ANIMATION to create the fireflies movement */
@@ -363,9 +369,8 @@ body {
 }
 
 .button {
-  background-color: var(--primary-color);
-  border: none;
-  color: white;
+  background-color: var(--accent-yellow);
+  color: var(--text-color);
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -375,37 +380,43 @@ body {
 }
 
 .button:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--main-lighter);
 }
 
 /* *** Styling for Pokemon cards displayed on type pages *** */
 .pokemon-by-type {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1em;
+  justify-content: space-around;
   align-items: center;
 }
 
 .pokemon-by-type li {
   text-decoration: none;
-  color: var(--blue);
+  color: var(--accent-red);
   list-style-type: none;
   padding: 1em;
 }
 
-.pokemon-by-type h3 {
+/* .pokemon-by-type h3 {
   text-align: center;
-  color: var(--green);
-}
+  color: var(--accent-green);
+} */
 
 footer {
   font-size: var(--small-font);
   font-family: var(--font-body);
   padding: 1em;
   margin: 3em 0 0;
-  background-color: var(--black);
-  color: var(--white);
+  color: var(--text-color);
   font-weight: bold;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--nav-grad1),
+    var(--nav-grad2),
+    var(--main-grad3)
+  );
 }
 
 /* Design for medium screens and larger */
@@ -417,39 +428,64 @@ footer {
     --font-p: 1.2rem;
   }
 
-  .nav,
-  .nav ul,
-  .nav li {
-    display: flex;
-    justify-content: space-evenly;
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    justify-items: center;
     padding: 7px;
   }
 
+  .nav ul {
+    display: grid;
+    grid-auto-columns: minmax(auto, 1fr);
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .nav li {
+    display: inline-block;
+    padding: 5px;
+  }
+
   .side-column {
-    flex: 1;
+    display: grid;
   }
 
   .side,
   .side p {
     background-image: url("./public/images/pokeball-png-45332.png");
-    background-color: var(--nav-gradient-end);
-    color: var(--text-color);
+    background-color: var(--accent-green);
+    color: var(--main-grad1);
     margin: 2em 0.2em;
     padding: 10px;
     text-align: center;
   }
 
   .main-column {
-    display: flex;
-    flex-wrap: wrap;
-    flex: 4;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
   }
 
-  .main-right ul,
+  .main-right {
+    display: grid;
+  }
+
+  .main-right ul {
+    display: grid;
+    grid-auto-columns: minmax(auto, 1fr);
+    gap: 10px;
+    padding: 0;
+  }
+
   .main-right li {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
+    display: inline-block;
+    padding: 5px;
+  }
+
+  .footer {
+    display: grid;
+    place-items: center;
+    padding: 1em;
   }
 }

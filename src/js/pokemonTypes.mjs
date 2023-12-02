@@ -63,26 +63,26 @@ export async function typesListNLink(types) {
     The id or class must be set in a seperate step because 
     the createElement function only accepts the tag name as an arg */
     const typeItem = document.createElement("li");
-    //typeItem.classList = "card-type"; //WRONG LOCATION
-
-    // Create image element
-    const typeImageElement = document.createElement("img");
-    typeImageElement.src = img;
-    typeImageElement.alt = `${type} Type`;
 
     // Create a link for each type by passing in the type
     const typeLink = document.createElement("a");
     typeLink.textContent = type;
     typeLink.href = `/type/${type}`;
 
-    // Append image and link to the list
-    typeItem.appendChild(typeImageElement);
+    // Create image element
+    const typeImageElement = document.createElement("img");
+    typeImageElement.src = img;
+    typeImageElement.alt = `${type} Type`;
+
+    // Append the image to the link
+    typeLink.appendChild(typeImageElement);
+
+    // Append the link to the type item
     typeItem.appendChild(typeLink);
 
-    // Add the type to the list
+    // Add the type item to the list
     typesList.appendChild(typeItem).classList.add("card-type");
-    //typesList.appendChild(typeItem);
-  }
+    }
   return typesList;
 }
 
@@ -107,6 +107,7 @@ export async function displayTypes() {
     });
 
     typesContainer.appendChild(typesList);
+    
   } catch (error) {
     console.error("Error displaying Pokémon types:", error);
   }
