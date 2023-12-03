@@ -85,12 +85,10 @@ body {
   font-family: var(--font-body);
   font-size: var(--font-p);
   color: var(--text-color);
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--main-grad1),
-    var(--main-grad2),
-    var(--main-grad3)
-  );
+  background: radial-gradient(circle at 50% 50%,
+      var(--main-grad1),
+      var(--main-grad2),
+      var(--main-grad3));
 }
 
 #content {
@@ -128,12 +126,10 @@ body {
   text-decoration: none;
   padding: 8px;
   margin-bottom: 7px;
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--nav-grad1),
-    var(--nav-grad2),
-    var(--main-grad3)
-  );
+  background: radial-gradient(circle at 50% 50%,
+      var(--nav-grad1),
+      var(--nav-grad2),
+      var(--main-grad3));
   box-shadow:
     0 1px 3px var(--main-grad1),
     0 1px 2px var(--main-lighter);
@@ -162,12 +158,10 @@ body {
   text-decoration: none;
   padding: 8px;
   margin-bottom: 7px;
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--nav-grad1),
-    var(--nav-grad2),
-    var(--main-grad3)
-  );
+  background: radial-gradient(circle at 50% 50%,
+      var(--nav-grad1),
+      var(--nav-grad2),
+      var(--main-grad3));
   box-shadow:
     0 1px 3px var(--main-grad1),
     0 1px 2px var(--main-lighter);
@@ -271,11 +265,9 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
   /*glowing effect for the fireflies: use a yellow background color 
   along with radial-gradient and box shadow */
   background-color: rgb(255, 255, 73);
-  background-image: radial-gradient(
-    rgb(249, 206, 36) 5%,
-    rgb(254, 179, 4) 25%,
-    rgb(252, 191, 7) 60%
-  );
+  background-image: radial-gradient(rgb(249, 206, 36) 5%,
+      rgb(254, 179, 4) 25%,
+      rgb(252, 191, 7) 60%);
   box-shadow:
     0 0 5px 2px rgb(250, 193, 93),
     0 0 20px 10px rgb(255, 228, 140),
@@ -333,6 +325,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
 /* Use step by step by step ANIMATION to create the fireflies movement */
 /* create left/right movement */
 @keyframes leftright {
+
   0%,
   100% {
     left: 80%;
@@ -361,6 +354,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
 
 /* create up/down movement */
 @keyframes updown {
+
   0%,
   100% {
     top: 10px;
@@ -381,6 +375,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
 
 /* create blinking effect */
 @keyframes blinking {
+
   0%,
   100% {
     box-shadow:
@@ -405,6 +400,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
       0 0 0px 0px rgb(255, 219, 41);
   }
 }
+
 /* *** ******* ******* End of Fireflies Styling ******* ******* *** */
 
 /* Footer Styling */
@@ -414,18 +410,37 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
   text-align: center;
   color: var(--text-color);
   font-weight: bold;
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--nav-grad1),
-    var(--nav-grad2),
-    var(--main-grad3)
-  );
+  background: radial-gradient(circle at 50% 50%,
+      var(--nav-grad1),
+      var(--nav-grad2),
+      var(--main-grad3));
   padding: 2em;
 }
 
 [class*="col-"] {
   width: 100%;
 }
+
+
+/* .nav-types {
+  display: none;
+}
+
+.pokemonByType-index .nav-types {
+  display: block;
+}
+
+.nav {
+  display: block;
+}
+
+.pokemonByType-index .nav {
+  display: none;
+} */
+
+
+
+
 
 /* *** 
 ( ( ( Styling for Pokemon cards displayed on each type page ) ) )
@@ -491,40 +506,52 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
     --font-h3: 2rem;
     --font-p: 1.2rem;
   }
+
   /* https://www.w3schools.com/css/css_rwd_intro.asp */
   .col-s-1 {
     width: 8.33%;
   }
+
   .col-s-2 {
     width: 16.66%;
   }
+
   .col-s-3 {
     width: 25%;
   }
+
   .col-s-4 {
     width: 33.33%;
   }
+
   .col-s-5 {
     width: 41.66%;
   }
+
   .col-s-6 {
     width: 50%;
   }
+
   .col-s-7 {
     width: 58.33%;
   }
+
   .col-s-8 {
     width: 66.66%;
   }
+
   .col-s-9 {
     width: 75%;
   }
+
   .col-s-10 {
     width: 83.33%;
   }
+
   .col-s-11 {
     width: 91.66%;
   }
+
   .col-s-12 {
     width: 100%;
   }
@@ -537,6 +564,5 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
     width: 15%;
   }
 
-  .side-column {
-  }
+  .side-column {}
 }
