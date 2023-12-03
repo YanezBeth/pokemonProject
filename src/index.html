@@ -10,22 +10,25 @@
 
   <body>
     <div id="content">
-      <header class="divider" id="main-header"></header>
-      <div class="firefly">
-        <ul class="fireflies">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+      <div class="h1-p1">
+        <h1>Pocket Monsters</h1>
       </div>
-      <div class="main">
-        <div class="row">
-          <div class="side-column">
-            <div class="side">
+      <div class="row">
+        <header class="divider" id="main-header"></header>
+        <div class="firefly">
+          <ul class="fireflies">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="main">
+          <div class="side col-6 col-s-9">
+            <div class="side-column">
               <h3>Gotta Catch 'Em All!</h3>
               <p>
                 Register for an account today to save your favorite Pokémon.
@@ -33,18 +36,20 @@
             </div>
           </div>
           <div class="main-column">
-            <div class="main-right">
-              <h2>Pokemon Information</h2>
-              <h3>Types of Pokémon</h3>
-              <div class="pokemon-carousel">
-                <!-- A container for list of Pokémon types -->
-                <div id="pokemon-types" class="pokemon-types"></div>
+            <div class="col-3 col-s-12">
+              <div class="main-right">
+                <h2>Pokemon Information</h2>
+                <h3>Types of Pokémon</h3>
+                <div class="pokemon-carousel">
+                  <!-- A container for list of Pokémon types -->
+                  <div id="pokemon-types" class="pokemon-types"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <footer id="main-footer"></footer>
+      <footer class="footer" id="main-footer"></footer>
     </div>
     <script src="/js/pokemonTypes.js" type="module"></script>
     <script src="/js/main.js" type="module"></script>

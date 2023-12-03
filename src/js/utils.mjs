@@ -51,8 +51,11 @@ export async function renderWithTemplate(
 export async function loadHeaderFooter() {
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
+  const typesHeaderTemplateFn = loadTemplate("/partials/typesHeader.html");
   const headerElement = qs("#main-header");
   const footerElement = qs("#main-footer");
+  const typesHeaderElement = qs("#types-header");
   renderWithTemplate(headerTemplateFn, headerElement);
   renderWithTemplate(footerTemplateFn, footerElement);
+  renderWithTemplate(typesHeaderTemplateFn, typesHeaderElement);
 }

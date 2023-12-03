@@ -44,6 +44,7 @@ export async function typesListNLink(types) {
   get all type images concurrently with a promise */
   const imgPromises = types.map(async (type) => {
     const typeImg = await typeImage(type);
+    //console.log(type);
     return {
       type,
       img: typeImg
@@ -74,15 +75,18 @@ export async function typesListNLink(types) {
     typeImageElement.src = img;
     typeImageElement.alt = `${type} Type`;
 
-    // Append the image to the link
+    // Append the image to card-types
     typeLink.appendChild(typeImageElement);
 
-    // Append the link to the type item
+    // Append the link to card-types
     typeItem.appendChild(typeLink);
 
-    // Add the type item to the list
+    // Add the type item to card-types
     typesList.appendChild(typeItem).classList.add("card-type");
+    //console.log(typeLink);
+    //console.log("card-type");
     }
+  //console.log(typesList);
   return typesList;
 }
 
@@ -102,11 +106,13 @@ export async function displayTypes() {
 
         // Go to pokemonByType/index.html and display all associated pokemon of that type
         window.location.href = `/pokemonByType/index.html?category=${selectedType}`;
-        console.log(`Selected type: ${selectedType}`);
+        //console.log(`Selected type: ${selectedType}`);
       });
     });
 
     typesContainer.appendChild(typesList);
+    
+    //console.log(typesContainer);
     
   } catch (error) {
     console.error("Error displaying Pokémon types:", error);

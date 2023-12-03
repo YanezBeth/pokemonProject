@@ -2,26 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yanez | Pokemon</title>
-    <link rel="stylesheet" href="../css/styles.css" />
+    <title>Yanez | Home</title>
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
   <body>
     <div id="content">
-      <header class="divider" id="main-header">
-        <div class="main-header"></div>
-      </header>
+      <div class="h1-p1">
+        <h1>Pocket Monsters</h1>
+      </div>
+      <div class="row">
+        <header class="divider" id="types-header"></header>
 
-      <section class="types">
-        <h2 class="pokemonCategory"></h2>
-        <div class="pokemon-by-type">
-          <ul id="pokemon-by-type"></ul>
-        </div>
-      </section>
+        <section class="types">
+          <h2 class="pokemonCategory"></h2>
+          <div class="pokemon-by-type">
+            <ul id="pokemon-by-type"></ul>
+          </div>
+        </section>
+      </div>
       <footer id="main-footer"></footer>
-      <script src="../js/main.js" type="module"></script>
-      <script src="../js/externalServices.mjs" type="module"></script>
     </div>
+    <script src="../js/main.js" type="module"></script>
+    <script src="../js/externalServices.mjs" type="module"></script>
   </body>
 </html>

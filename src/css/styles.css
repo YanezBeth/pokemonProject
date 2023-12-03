@@ -21,6 +21,7 @@ and https://www.w3schools.com/howto/howto_js_slideshow.asp
   --accent-green-alpha: #c2e5c870;
   --nav-grad1: #477b7180;
   --nav-grad2: #31474a80;
+  --accent-blue: #33b5e580;
   --accent-yellow: #f8c633;
   --accent-red: #fb3640;
   --card-bg: #18313c;
@@ -55,7 +56,7 @@ h1 {
   font-family: var(--font-headings);
   text-align: center;
   padding: 0.2em;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 h2 {
@@ -93,71 +94,112 @@ body {
 }
 
 #content {
-  border: 1px solid #333;
-  padding: 20px;
+  padding: 2em;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
 }
 
 /* *** Header styling *** */
-.main-header {
-  width: 100%;
-  height: 90px;
-  position: absolute;
-  z-index: 100;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-family: var(--font-headings);
+.h1-p1 {
+  padding: 1em;
 }
 
-.nav {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  grid-gap: 10px;
+.nav ul {
+  list-style-type: none;
+  color: var(--text-color);
+  text-align: center;
+  font-family: var(--font-body);
   margin: 0;
-  padding: 10px 0;
+  padding: 0;
+}
+
+.nav li {
+  text-decoration: none;
+  padding: 8px;
+  margin-bottom: 7px;
   background: radial-gradient(
     circle at 50% 50%,
     var(--nav-grad1),
     var(--nav-grad2),
     var(--main-grad3)
   );
+  box-shadow:
+    0 1px 3px var(--main-grad1),
+    0 1px 2px var(--main-lighter);
 }
 
-.nav a,
-.nav ul,
-.nav li {
-  color: var(--text-color);
-  text-decoration: none;
-  list-style: none;
-  padding: 10px 15px;
-  text-align: center;
-}
-
-/* Change color on hover */
-.nav li:hover,
 .nav a:hover {
   background-color: var(--accent-yellow);
-  color: var(--main-grad1);
+  color: var(--main-grad3);
   border-radius: var(--border-radius);
+  padding: 0.8em;
+  box-shadow:
+    0 1px 3px var(--accent-blue),
+    0 1px 2px var(--main-lighter);
 }
 
-/* *** HOME, src/index.html page styling *** */
-
-.side-column {
-  display: grid;
-  background-color: var(--accent-green-alpha);
-  border-radius: var(--border-radius);
-}
-
-.side,
-.side p {
-  background-image: url("./public/images/pokeball-png-45332.png");
-  color: var(--main-grad1);
-  margin: 2em 0.2em;
-  padding: 10px;
+.nav-types ul {
+  list-style-type: none;
+  color: var(--text-color);
   text-align: center;
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+}
+
+.nav-types li {
+  text-decoration: none;
+  padding: 8px;
+  margin-bottom: 7px;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--nav-grad1),
+    var(--nav-grad2),
+    var(--main-grad3)
+  );
+  box-shadow:
+    0 1px 3px var(--main-grad1),
+    0 1px 2px var(--main-lighter);
+}
+
+.nav-types a:hover {
+  background-color: var(--accent-yellow);
+  color: var(--main-grad3);
+  border-radius: var(--border-radius);
+  padding: 0.8em;
+  box-shadow:
+    0 1px 3px var(--accent-blue),
+    0 1px 2px var(--main-lighter);
+}
+
+/* 
+******* ******* ( ( ( HOME, src/index.html page styling ) ) ) ******* ******* 
+*/
+
+/* Styling for call to action*/
+.side-column {
+  background-color: var(--accent-blue);
+  border-radius: var(--border-radius);
+  padding: 1.5em;
+  text-align: center;
+  box-shadow:
+    0 1px 3px var(--accent-green),
+    0 1px 2px var(--accent-yellow);
+}
+
+.side p {
+  margin-top: -0.8em;
 }
 
 .side h3 {
@@ -165,62 +207,58 @@ body {
   color: var(--accent-yellow);
 }
 
-/* CSS for the carousel container */
-.pokemon-types ul,
-#pokemon-types > ul {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 10px;
+/* Styling for pokemon type cards on home page*/
+.main-right {
+  padding: 15px;
+  color: var(--text-color);
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  /* box-shadow: 0 1px 3px var(--accent-blue), 0 1px 2px var(--accent-yellow); */
 }
 
-/* CSS for the carousel images */
-.card-type img,
-.card-type a,
-.card-type li:nth-child() {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  animation: carouselAnimation 10s infinite;
+.main-right ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-#pokemon-types > ul > li:nth-child() > a {
+.main-right li {
+  padding: 8px;
+  margin-bottom: 10px;
+
   text-align: center;
 }
 
-/* CSS animation for the carousel */
-@keyframes carouselAnimation {
-  0% {
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  33.33% {
-    opacity: 1;
-  }
-
-  53.33% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-.main-column img {
-  width: 100%;
+.main-right img {
+  box-shadow:
+    0 2px 6px var(--accent-yellow),
+    0 2px 4px var(--accent-blue);
+  max-width: 100%;
   height: auto;
 }
 
+#pokemon-types {
+  display: grid;
+}
+
+.card-type {
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  background: blue;
+  color: white;
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+/* ******* ******* Fireflies styling ******* *******  
+https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
+*/
 .firefly ul {
   list-style: none;
   display: grid;
@@ -367,7 +405,65 @@ body {
       0 0 0px 0px rgb(255, 219, 41);
   }
 }
+/* *** ******* ******* End of Fireflies Styling ******* ******* *** */
 
+/* Footer Styling */
+.footer {
+  font-size: var(--small-font);
+  font-family: var(--font-body);
+  text-align: center;
+  color: var(--text-color);
+  font-weight: bold;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--nav-grad1),
+    var(--nav-grad2),
+    var(--main-grad3)
+  );
+  padding: 2em;
+}
+
+[class*="col-"] {
+  width: 100%;
+}
+
+/* *** 
+( ( ( Styling for Pokemon cards displayed on each type page ) ) )
+*** */
+#pokemon-by-type {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+  padding: 10px;
+  list-style-type: none;
+}
+
+#pokemon-by-type li {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
+  box-shadow:
+    0 1px 3px var(--accent-blue),
+    0 1px 2px var(--accent-yellow);
+  list-style-type: none;
+}
+
+#pokemon-by-type h3 {
+  color: var(--text-color);
+  font-family: var(--font-p);
+}
+
+#pokemon-by-type img {
+  box-shadow:
+    0 2px 6px var(--accent-yellow),
+    0 2px 4px var(--accent-blue);
+  max-width: 100%;
+  height: auto;
+}
+
+/* Button styling */
 .button {
   background-color: var(--accent-yellow);
   color: var(--text-color);
@@ -383,109 +479,64 @@ body {
   background-color: var(--main-lighter);
 }
 
-/* *** Styling for Pokemon cards displayed on type pages *** */
-.pokemon-by-type {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 1em;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.pokemon-by-type li {
-  text-decoration: none;
-  color: var(--accent-red);
-  list-style-type: none;
-  padding: 1em;
-}
-
-/* .pokemon-by-type h3 {
-  text-align: center;
-  color: var(--accent-green);
-} */
-
-footer {
-  font-size: var(--small-font);
-  font-family: var(--font-body);
-  padding: 1em;
-  margin: 3em 0 0;
-  color: var(--text-color);
-  font-weight: bold;
-  background: radial-gradient(
-    circle at 50% 50%,
-    var(--nav-grad1),
-    var(--nav-grad2),
-    var(--main-grad3)
-  );
-}
-
-/* Design for medium screens and larger */
-@media screen and (min-width: 768px) {
+/* 
+******* ******* ******* ******* ******* ******* ******* *******
+( ( ( ( ( Style design for medium screens and larger ) ) ) ) )
+******* ******* ******* ******* ******* ******* ******* ******* 
+*/
+@media screen and (min-width: 600px) {
   :root {
     --font-h1: 4rem;
     --font-h2: 2.5rem;
     --font-h3: 2rem;
     --font-p: 1.2rem;
   }
-
-  .nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    justify-items: center;
-    padding: 7px;
+  /* https://www.w3schools.com/css/css_rwd_intro.asp */
+  .col-s-1 {
+    width: 8.33%;
+  }
+  .col-s-2 {
+    width: 16.66%;
+  }
+  .col-s-3 {
+    width: 25%;
+  }
+  .col-s-4 {
+    width: 33.33%;
+  }
+  .col-s-5 {
+    width: 41.66%;
+  }
+  .col-s-6 {
+    width: 50%;
+  }
+  .col-s-7 {
+    width: 58.33%;
+  }
+  .col-s-8 {
+    width: 66.66%;
+  }
+  .col-s-9 {
+    width: 75%;
+  }
+  .col-s-10 {
+    width: 83.33%;
+  }
+  .col-s-11 {
+    width: 91.66%;
+  }
+  .col-s-12 {
+    width: 100%;
   }
 
-  .nav ul {
-    display: grid;
-    grid-auto-columns: minmax(auto, 1fr);
-    gap: 10px;
-    padding: 5px;
-  }
-
-  .nav li {
-    display: inline-block;
-    padding: 5px;
+  /* Nav styling for larger screens*/
+  .nav-types {
+    position: fixed;
+    top: 185px;
+    left: 20px;
+    width: 15%;
   }
 
   .side-column {
-    display: grid;
-  }
-
-  .side,
-  .side p {
-    background-image: url("./public/images/pokeball-png-45332.png");
-    background-color: var(--accent-green);
-    color: var(--main-grad1);
-    margin: 2em 0.2em;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .main-column {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 1em;
-  }
-
-  .main-right {
-    display: grid;
-  }
-
-  .main-right ul {
-    display: grid;
-    grid-auto-columns: minmax(auto, 1fr);
-    gap: 10px;
-    padding: 0;
-  }
-
-  .main-right li {
-    display: inline-block;
-    padding: 5px;
-  }
-
-  .footer {
-    display: grid;
-    place-items: center;
-    padding: 1em;
   }
 }
