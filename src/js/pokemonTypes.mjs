@@ -38,7 +38,7 @@ export async function typeImage(type) {
 // Create a list of pokemon types with images for the Home page
 export async function typesListNLink(types) {
   // Create an unordered list of types
-  const typesList = document.getElementById("pokemon-types-list");
+  const typesList = document.createElement("ul");
 
   /* Took too long when it was getting images singularily, 
   get all type images concurrently with a promise */
@@ -50,7 +50,6 @@ export async function typesListNLink(types) {
       img: typeImg
     };
   });
-  //console.log(imgPromises);
 
   const typeImages = await Promise.all(imgPromises);
 
@@ -65,13 +64,11 @@ export async function typesListNLink(types) {
     The id or class must be set in a seperate step because 
     the createElement function only accepts the tag name as an arg */
     const typeItem = document.createElement("li");
-    typeItem.classList.add("card-type");
 
     // Create a link for each type by passing in the type
     const typeLink = document.createElement("a");
     typeLink.textContent = type;
     typeLink.href = `/type/${type}`;
-    //console.log(typeLink.href);
 
     // Create image element
     const typeImageElement = document.createElement("img");
@@ -85,8 +82,7 @@ export async function typesListNLink(types) {
     typeItem.appendChild(typeLink);
 
     // Add the type item to card-types
-    //typesList.appendChild(typeItem).classList.add("card-type");
-    typesList.appendChild(typeItem);
+    typesList.appendChild(typeItem).classList.add("card-type");
     //console.log(typeLink);
     //console.log("card-type");
     }
