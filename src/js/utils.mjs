@@ -10,7 +10,7 @@ export function loadTemplate(path) {
       const html = await response.text();
       return html;
     } else {
-      console.error(`Error loading template: ${path}`);
+      //console.error(`Error loading template: ${path}`);
     }
   };
 }
@@ -39,7 +39,7 @@ export async function renderWithTemplate(
   clear = true
 ) {
   if (clear) {
-    parentElement.innerHTML = "";
+    parentElement.innerHTML = ""; 
   }
   const htmlString = await templateFn(data);
   parentElement.insertAdjacentHTML(position, htmlString);
@@ -51,11 +51,8 @@ export async function renderWithTemplate(
 export async function loadHeaderFooter() {
   const headerTemplateFn = loadTemplate("/partials/header.html");
   const footerTemplateFn = loadTemplate("/partials/footer.html");
-  const typesHeaderTemplateFn = loadTemplate("/partials/typesHeader.html");
   const headerElement = qs("#main-header");
   const footerElement = qs("#main-footer");
-  const typesHeaderElement = qs("#types-header");
   renderWithTemplate(headerTemplateFn, headerElement);
   renderWithTemplate(footerTemplateFn, footerElement);
-  renderWithTemplate(typesHeaderTemplateFn, typesHeaderElement);
 }

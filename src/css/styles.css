@@ -13,10 +13,10 @@ and https://www.w3schools.com/howto/howto_js_slideshow.asp
   --font-headings: Vidaloka, serif;
   /* colors */
   --text-color: #f5f3f4;
-  --main-grad1: #0f2027;
-  --main-grad2: #151d20;
-  --main-grad3: #161a1d;
-  --main-lighter: #224250;
+  --main-grad1: #184457;
+  --main-grad2: #182930;
+  --main-grad3: #0d2435;
+  --main-lighter: #3295c0;
   --accent-green: #c2e5c8;
   --accent-green-alpha: #c2e5c870;
   --nav-grad1: #477b7180;
@@ -242,18 +242,24 @@ body {
   display: grid;
 }
 
-.card-type {
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  background: blue;
-  color: white;
-  font-weight: bold;
-
+.pokemon-types-list {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 10px;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+}
+
+.pokemon-types-list a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.card-type {
+  flex: 1 1 45%;
+  margin: 0.25em;
+  padding: 0.5em;
+  max-width: 25%;
 }
 
 /* ******* ******* Fireflies styling ******* *******  
@@ -405,6 +411,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
       0 0 0px 0px rgb(255, 219, 41);
   }
 }
+
 /* *** ******* ******* End of Fireflies Styling ******* ******* *** */
 
 /* Footer Styling */
@@ -427,17 +434,34 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
   width: 100%;
 }
 
+/* .nav-types {
+  display: none;
+}
+
+.pokemonByType-index .nav-types {
+  display: block;
+}
+
+.nav {
+  display: block;
+}
+
+.pokemonByType-index .nav {
+  display: none;
+} */
+
 /* *** 
 ( ( ( Styling for Pokemon cards displayed on each type page ) ) )
 *** */
-#pokemon-by-type {
+/* #pokemon-by-type {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 10px;
-  padding: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 1em;
   list-style-type: none;
-}
-
+  padding: 0;
+} */
+/* 
 #pokemon-by-type li {
   background-color: var(--card-bg);
   border-radius: var(--border-radius);
@@ -456,27 +480,98 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
 }
 
 #pokemon-by-type img {
-  box-shadow:
-    0 2px 6px var(--accent-yellow),
-    0 2px 4px var(--accent-blue);
-  max-width: 100%;
+  width: 100%;
   height: auto;
+} */
+
+/* Pagination for specific types pages */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: inline-flex;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.pagination li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 0.5em;
+}
+
+.pagination a {
+  text-decoration: none;
+  padding: 0.5em;
+  color: var(--text-color);
+  background-color: var(--accent-yellow);
+  border-right: none;
+  padding: 8px 16px;
+  background-color: var(--accent-yellow);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-right: 1px solid #ddd;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+#pokemon-by-type-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 1em;
+  list-style-type: none;
+  padding: 0;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+}
+
+#pokemon-by-type-list li {
+  border-radius: var(--border-radius);
+  padding: 1em;
+  box-shadow:
+    0 1px 3px var(--accent-blue),
+    0 1px 2px var(--accent-yellow);
 }
 
 /* Button styling */
 .button {
   background-color: var(--accent-yellow);
-  color: var(--text-color);
-  padding: 10px 20px;
+  color: var(--main-grad3);
+  padding: 5px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: var(--font-p);
   cursor: pointer;
+  border-radius: var(--border-radius);
+}
+.button:hover {
+  background-color: var(--accent-green);
 }
 
-.button:hover {
-  background-color: var(--main-lighter);
+#register a {
+  color: var(--main-grad3);
 }
 
 /* 
@@ -491,40 +586,52 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
     --font-h3: 2rem;
     --font-p: 1.2rem;
   }
+
   /* https://www.w3schools.com/css/css_rwd_intro.asp */
   .col-s-1 {
     width: 8.33%;
   }
+
   .col-s-2 {
     width: 16.66%;
   }
+
   .col-s-3 {
     width: 25%;
   }
+
   .col-s-4 {
     width: 33.33%;
   }
+
   .col-s-5 {
     width: 41.66%;
   }
+
   .col-s-6 {
     width: 50%;
   }
+
   .col-s-7 {
     width: 58.33%;
   }
+
   .col-s-8 {
     width: 66.66%;
   }
+
   .col-s-9 {
     width: 75%;
   }
+
   .col-s-10 {
     width: 83.33%;
   }
+
   .col-s-11 {
     width: 91.66%;
   }
+
   .col-s-12 {
     width: 100%;
   }
