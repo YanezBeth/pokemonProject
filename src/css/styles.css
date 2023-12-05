@@ -140,13 +140,11 @@ body {
 }
 
 .nav a:hover {
-  background-color: var(--accent-yellow);
-  color: var(--main-grad3);
-  border-radius: var(--border-radius);
-  padding: 0.8em;
-  box-shadow:
-    0 1px 3px var(--accent-blue),
-    0 1px 2px var(--main-lighter);
+  color: var(--accent-yellow);
+}
+
+.nav a:active {
+  color: var(--accent-red);
 }
 
 .nav-types ul {
@@ -288,6 +286,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
   width: 5px;
   top: -20px;
   position: absolute;
+  z-index: -1;
   /* give the Cubic Bezier curve movement and set the animation in an infinite state */
   animation:
     leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1),
