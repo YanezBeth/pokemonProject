@@ -23,7 +23,7 @@ export async function typeImage(type) {
     // Ensure there's at least one Pokémon of the specified type
     if (pokemonOfType.length > 0) {
       // Use the image of the first Pokémon of the specified type
-      return pokemonOfType[0].images.small;
+      return pokemonOfType[0].images.large;
     } else {
       /* If there's not an image of a type found, 
       use pokeball image */
