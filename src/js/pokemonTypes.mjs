@@ -134,3 +134,4 @@ export async function allPokemonByType(type) {
     throw error;
   }
 }
+
