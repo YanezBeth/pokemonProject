@@ -1,99 +1,128 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yanez | Register</title>
+    <link rel="icon" type="image/png" href="/public/images/pokemonIcon.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yanez | Login</title>
-  <link rel="stylesheet" href="/css/styles.css" />
-</head>
-
-<body>
-  <div id="content">
-    <div class="h1-p1">
-      <h1>Pocket Monsters</h1>
-      <p class="nav-p" id="nav-p"></p>
-    </div>
-    <div class="row">
-      <header class="divider" id="main-header"></header>
-      <div class="firefly" id="firefly">
-        <ul class="fireflies">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <body>
+    <div id="content">
+      <div class="h1-p1">
+        <h1>Pocket Monsters</h1>
+        <p class="nav-p" id="nav-p"></p>
       </div>
-      <div class="main">
-        <div class="side col-6 col-s-9">
-          <h2>Register New Trainer!</h2>
-          <div class="login-side-column">
-            <p>"We do have a lot in common. The same earth, the same air,
-              the same sky. Maybe if we started looking at what is the same,
-              instead of looking at what is different, well, who knows?"
-              - Meowth
-              <br>
-              All fields are required to register an account.</p>
-            <div class="main-column">
-              <div class="col-3 col-s-12">
-                <div class="main-right">
-                  <div class="form-contain">
-                    <form class="registerUser">
-                      <div class="form-row">
-                        <div class="form-col-25">
-                          <label for="userFirstName">First Name:</label>
+      <div class="row">
+        <header class="divider" id="main-header"></header>
+        <div class="firefly" id="firefly">
+          <ul class="fireflies">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <div class="main">
+          <div class="side col-6 col-s-9">
+            <h2>Register New Trainer!</h2>
+            <div class="login-side-column">
+              <p>
+                "We do have a lot in common. The same earth, the same air, the
+                same sky. Maybe if we started looking at what is the same,
+                instead of looking at what is different, well, who knows?" -
+                Meowth
+                <br />
+                All fields are required to register an account.
+              </p>
+              <div class="main-column">
+                <div class="col-3 col-s-12">
+                  <div class="main-right">
+                    <div class="form-contain">
+                      <form class="registerUser">
+                        <div class="form-row">
+                          <div class="form-col-25">
+                            <label for="userFirstName">First Name:</label>
+                          </div>
+                          <div class="form-col-75">
+                            <input
+                              name="userFirstName"
+                              id="userFirstName"
+                              type="text"
+                              required
+                            />
+                          </div>
                         </div>
-                        <div class="form-col-75">
-                          <input name="userFirstName" id="userFirstName" type="text" required>
+                        <div class="form-row">
+                          <div class="form-col-25">
+                            <label for="userLastName">Last Name:</label>
+                          </div>
+                          <div class="form-col-75">
+                            <input
+                              name="userLastName"
+                              id="userLastName"
+                              type="text"
+                              required
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-col-25">
-                          <label for="userLastName">Last Name:</label>
+                        <div class="form-row">
+                          <div class="form-col-25">
+                            <label for="userEmail">Email Address:</label>
+                          </div>
+                          <div class="form-col-75">
+                            <input
+                              name="userEmail"
+                              id="userEmail"
+                              type="email"
+                              required
+                            />
+                          </div>
                         </div>
-                        <div class="form-col-75">
-                          <input name="userLastName" id="userLastName" type="text" required>
+                        <div class="form-row">
+                          <div class="form-col-25"></div>
+                          <div class="form-col-75">
+                            <span class="instructions"
+                              >Passwords must be at least 8 characters and
+                              contain at least 1 number, 1 capital, and 1
+                              special character</span
+                            >
+                          </div>
                         </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-col-25">
-                          <label for="userEmail">Email Address:</label>
+                        <div class="form-row">
+                          <div class="form-col-25">
+                            <label for="userPassword">Password:</label>
+                          </div>
+                          <div class="form-col-75">
+                            <input
+                              name="userPassword"
+                              id="userPassword"
+                              type="password"
+                              pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                              required
+                            />
+                          </div>
                         </div>
-                        <div class="form-col-75">
-                          <input name="userEmail" id="userEmail" type="email" required>
+                        <div class="form-row">
+                          <button
+                            type="submit"
+                            class="button"
+                            name="submit"
+                            id="regbtn"
+                            value="Register"
+                          >
+                            Register
+                          </button>
+                          <!-- Add the action name & value pair -->
+                          <!-- <input type="hidden" name="action" value="register-user"> -->
                         </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-col-25">
-                        </div>
-                        <div class="form-col-75">
-                          <span class="instructions">Passwords must be at least 8 characters and contain at least 1
-                            number,
-                            1
-                            capital, and 1 special character</span>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <div class="form-col-25">
-                          <label for="userPassword">Password:</label>
-
-                        </div>
-                        <div class="form-col-75">
-                          <input name="userPassword" id="userPassword" type="password"
-                            pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
-                        </div>
-                      </div>
-                      <div class="form-row">
-                        <button type="submit" class="button" name="submit" id="regbtn"
-                          value="Register">Register</button>
-                        <!-- Add the action name & value pair -->
-                        <!-- <input type="hidden" name="action" value="register-user"> -->
-                      </div>
-                    </form>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -102,9 +131,7 @@
         </div>
       </div>
     </div>
-  </div>
-  <footer class="footer" id="main-footer"></footer>
-  <script src="/js/login.js" type="module"></script>
-</body>
-
+    <footer class="footer" id="main-footer"></footer>
+    <script src="/js/login.js" type="module"></script>
+  </body>
 </html>

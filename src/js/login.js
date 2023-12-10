@@ -1,7 +1,4 @@
-import {
-  loadHeaderFooter
-} from "./utils.mjs";
-
+import { loadHeaderFooter } from "./utils.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Load header and footer
@@ -23,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //     password
 //   }, redirect);
 // });
-
 
 const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", (event) => {

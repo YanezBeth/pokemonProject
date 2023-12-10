@@ -1,7 +1,4 @@
-import {
-  loadHeaderFooter
-} from "./utils.mjs";
-
+import { loadHeaderFooter } from "./utils.mjs";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Load header and footer
@@ -12,9 +9,9 @@ const regBtn = document.getElementById("regbtn");
 regBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const firstName = document.getElementById("userFirstName").value;
-//   const lastName = document.getElementById("userLastName").value;
-//   const email = document.getElementById("userEmail").value;
-//   const password = document.getElementById("userPassword").value;
+  //   const lastName = document.getElementById("userLastName").value;
+  //   const email = document.getElementById("userEmail").value;
+  //   const password = document.getElementById("userPassword").value;
   updateGreeting(firstName);
   // Redirect with message
   window.location.href = "./index.html?message=Registration successful!";
