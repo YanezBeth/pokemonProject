@@ -259,7 +259,20 @@ body {
 /* ******* ******* Fireflies styling ******* *******  
 https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
 */
+/* .firefly {
+  position:relative; 
+} */
+
+.fireflies {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Ensure the fireflies don't block interactions */
+  z-index: -1;
+}
+
 .firefly ul {
+  position: absolute;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5px, 10px));
@@ -270,26 +283,23 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
   border-radius: 50%;
   /*glowing effect for the fireflies: use a yellow background color 
   along with radial-gradient and box shadow */
-  background-color: rgb(255, 255, 73);
-  background-image: radial-gradient(
-    rgb(249, 206, 36) 5%,
-    rgb(254, 179, 4) 25%,
-    rgb(252, 191, 7) 60%
-  );
+  background-color: #ffe300;
+  /* background-image: radial-gradient(#ffd700, #ffb04f, #ffde2e); */
   box-shadow:
-    0 0 5px 2px rgb(250, 193, 93),
-    0 0 20px 10px rgb(255, 228, 140),
-    0 0 40px 15px rgb(255, 219, 41);
+    0 0 2px 1px #ffde2e,
+    0 0 5px 2px #ffb04f;
   height: 5px;
   width: 5px;
-  top: -20px;
+  /* top: -20; */
   position: absolute;
-  z-index: -1;
+  opacity: 0;
+  /* z-index: -1; */
   /* give the Cubic Bezier curve movement and set the animation in an infinite state */
   animation:
-    leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1),
-    updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1),
-    blinking 2s ease-in-out infinite;
+    /* leftright 24s infinite cubic-bezier(0.39, 0, 0.63, 1),
+    updown 8s infinite 1.25s cubic-bezier(0.39, 0, 0.63, 1), */
+    blinking 5s ease-in-out infinite,
+    positionChange 5s ease-in-out infinite;
 }
 
 /* move the fireflies at different speeds */
@@ -329,6 +339,78 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
 .fireflies li:nth-of-type(7) {
   animation-delay: 0.9s;
   animation-duration: 70s, 80s, 0.01s;
+}
+
+li:nth-of-type(8) {
+  animation-delay: 1.6s;
+  animation-duration: 50s, 40s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+li:nth-of-type(9) {
+  animation-delay: 1.8s;
+  animation-duration: 77s, 88s, 0.01s;
+}
+
+li:nth-of-type(10) {
+  animation-delay: 3s;
+  animation-duration: 87s, 73s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+li:nth-of-type(11) {
+  animation-delay: 1s;
+  animation-duration: 60s, 78s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+li:nth-of-type(12) {
+  animation-delay: 0.5s;
+  animation-duration: 85s, 80s, 0.01s;
+}
+
+li:nth-of-type(13) {
+  animation-delay: 1.5s;
+  animation-duration: 75s, 66s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+li:nth-of-type(14) {
+  animation-delay: 2.5s;
+  animation-duration: 87s, 75s, 0.01s;
+}
+
+li:nth-of-type(15) {
+  animation-delay: 0.3s;
+  animation-duration: 69s, 85s, 0.01s;
+}
+
+li:nth-of-type(16) {
+  animation-delay: 2.2s;
+  animation-duration: 80s, 77s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+li:nth-of-type(17) {
+  animation-delay: 0.9s;
+  animation-duration: 65s, 88s, 0.01s;
+}
+
+li:nth-of-type(18) {
+  animation-delay: 1.6s;
+  animation-duration: 59s, 63s, 0.01s;
+  animation-fill-mode: backwards, backwards;
+}
+
+li:nth-of-type(19) {
+  animation-delay: 1.8s;
+  animation-duration: 88s, 79s, 0.01s;
+}
+
+li:nth-of-type(20) {
+  animation-delay: 3s;
+  animation-duration: 59s, 75s, 0.01s;
+  animation-fill-mode: backwards, backwards;
 }
 
 /* Use step by step by step ANIMATION to create the fireflies movement */
@@ -390,6 +472,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
       0 0 30px 10px rgb(255, 219, 41);
     height: 0;
     width: 0;
+    opacity: 25%;
   }
 
   50% {
@@ -397,6 +480,7 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
       0 0 5px 2px rgb(250, 193, 93),
       0 0 20px 10px rgb(255, 228, 140),
       0 0 40px 15px rgb(255, 219, 41);
+    opacity: 50%;
   }
 
   75% {
@@ -404,6 +488,30 @@ https://www.geeksforgeeks.org/create-a-css-fireflies-background-using-html-css/
       0 0 0px 0px rgb(250, 193, 93),
       0 0 0px 0px rgb(255, 228, 140),
       0 0 0px 0px rgb(255, 219, 41);
+    opacity: 100%;
+  }
+}
+
+@keyframes positionChange {
+  0%,
+  100% {
+    left: 10%;
+    top: 50%;
+  }
+
+  25% {
+    left: 75%;
+    top: 90%;
+  }
+
+  50% {
+    left: 30%;
+    top: 20%;
+  }
+
+  75% {
+    left: 95%;
+    top: 10%;
   }
 }
 
@@ -512,7 +620,6 @@ form {
   text-align: left;
   background-color: var(--accent-blue);
   border-radius: var(--border-radius);
-  padding: 1.5em;
   text-align: center;
   border: 2px solid var(--accent-yellow);
   box-shadow:
@@ -565,6 +672,39 @@ input:required:valid {
   padding: 1em;
 }
 
+.message {
+  display: none;
+}
+
+.nav-p {
+  font-size: var(--small-font);
+  font-family: var(--font-headings);
+  text-align: center;
+  padding: 1em;
+}
+
+.quote {
+  padding-top: 1em;
+  font-size: var(--font-p);
+  text-align: center;
+}
+
+.author {
+  font-size: var(--font-p);
+  text-align: right;
+  padding: 1em;
+}
+
+.instruct {
+  padding-top: 1.25em;
+  font-weight: bold;
+}
+
+/* SEARCH page styling */
+.search-right {
+  text-align: left;
+}
+
 /* Button styling */
 .button {
   background-color: var(--accent-yellow);
@@ -577,6 +717,7 @@ input:required:valid {
   cursor: pointer;
   border-radius: var(--border-radius);
   font-weight: bold;
+  margin-bottom: 1em;
 }
 
 .button:hover {

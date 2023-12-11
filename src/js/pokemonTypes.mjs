@@ -17,20 +17,39 @@ export async function fetchPokemonTypes() {
 
 /* Get the 1st found associated image for 
 each type to display on HOME page */
-export async function typeImage(type) {
+async function typeImage(type) {
   try {
-    const pokemonOfType = await allPokemonByType(type);
-    // Ensure there's at least one Pokémon of the specified type
-    if (pokemonOfType.length > 0) {
-      // Use the image of the first Pokémon of the specified type
-      return pokemonOfType[0].images.large;
-    } else {
-      /* If there's not an image of a type found, 
-      use pokeball image */
-      return "./public/images/pokeball-png-45332.png";
+    const pokemonImageMap = {
+      "Colorless": "Altaria",
+      "Darkness": "Drapion",
+      "Dragon": "Dragonair",
+      "Fairy": "Sylveon",
+      "Fighting": "Lucario",
+      "Fire": "Arcanine",
+      "Grass": "Bulbasaur",
+      "Lightning": "Pikachu",
+      "Metal": "Dialga",
+      "Psychic": "Mew",
+      "Water": "Blastoise",
+    };
+
+    if (!(type in pokemonImageMap)) {
+      throw new Error(`Invalid type: ${type}`);
     }
+
+    const pokemonName = pokemonImageMap[type];
+
+    const pokemonData = await pokemon.card.where({
+      q: `name:${pokemonName}`
+    });
+
+    if (pokemonData.data.length === 0) {
+      throw new Error(`Pokemon not found: ${pokemonName}`);
+    }
+
+    return pokemonData.data[0].images.large;
   } catch (error) {
-    console.error("Error fetching image for ${type}:", error);
+    console.error(`Error fetching image for type ${type}:`, error);
     throw error;
   }
 }
@@ -64,7 +83,8 @@ export async function typesListNLink(types) {
     The id or class must be set in a seperate step because 
     the createElement function only accepts the tag name as an arg */
     const typeItem = document.createElement("li");
-
+    // add the class "fade" to each li element
+    typeItem.classList.add("fade");
     // Create a link for each type by passing in the type
     const typeLink = document.createElement("a");
     typeLink.textContent = type;
@@ -85,7 +105,7 @@ export async function typesListNLink(types) {
     typesList.appendChild(typeItem).classList.add("card-type");
     //console.log(typeLink);
     //console.log("card-type");
-    }
+  }
   //console.log(typesList);
   return typesList;
 }
@@ -111,9 +131,9 @@ export async function displayTypes() {
     });
 
     typesContainer.appendChild(typesList);
-    
+
     //console.log(typesContainer);
-    
+
   } catch (error) {
     console.error("Error displaying Pokémon types:", error);
   }

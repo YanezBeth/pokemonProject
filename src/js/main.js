@@ -1,5 +1,6 @@
 import pokemon from "pokemontcgsdk";
 import { loadHeaderFooter } from "./utils.mjs";
+import { updateGreeting } from "./auth.mjs";
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
@@ -10,13 +11,24 @@ pokemon.configure({
 document.addEventListener("DOMContentLoaded", function () {
   // Load header and footer
   loadHeaderFooter();
+
+  // Update greeting with username if stored in local storage
+  const storedUsername = localStorage.getItem("userName");
+  if (storedUsername) {
+    updateGreeting(storedUsername);
+  }
 });
 
-const urlParams = new URLSearchParams(window.location.search);
-const message = urlParams.get("message");
+/* Randomize Fireflies */
+document.addEventListener("DOMContentLoaded", function () {
+  const fireflies = document.querySelectorAll(".fireflies li");
 
-if (message) {
-  // Display the message
-  const messageElement = document.getElementById("nav-p");
-  messageElement.textContent = message;
-}
+  fireflies.forEach((firefly) => {
+    // Set random starting positions within the entire height of the page
+    const randomTop = Math.floor(Math.random() * window.innerHeight);
+    const randomLeft = Math.floor(Math.random() * window.innerWidth);
+
+    firefly.style.top = `${randomTop}px`;
+    firefly.style.left = `${randomLeft}px`;
+  });
+});

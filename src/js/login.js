@@ -28,15 +28,15 @@ loginForm.addEventListener("submit", (event) => {
   localStorage.setItem("userName", username); // store username in local storage
   updateGreeting(username); // update greeting message
   // After successful login, redirect with message:
-  window.location.href = "./index.html?message=Sign in successful!";
+  //window.location.href = "./index.html?message=Sign in successful!";
 });
 
-function updateGreeting(username) {
+export function updateGreeting(username) {
   const greetingElement = document.getElementById("nav-p");
-  greetingElement.textContent = `Hello, ${username}`;
+  greetingElement.textContent = `I choose you, ${username}!`;
 }
 
-const storedUsername = localStorage.getItem("userName");
-if (storedUsername) {
-  updateGreeting(storedUsername);
-}
+// const storedUsername = localStorage.getItem("userName");
+// if (storedUsername) {
+//   updateGreeting(storedUsername);
+// }
