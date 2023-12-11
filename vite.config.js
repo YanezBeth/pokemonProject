@@ -17,6 +17,7 @@ export default defineConfig({
         login: resolve(__dirname, "src/login/index.html"),
         register: resolve(__dirname, "src/register/index.html"),
         pokemon: resolve(__dirname, "src/pokemonPage/index.html"),
+        search: resolve(__dirname, "src/search/index.html"),
       },
     },
   },
