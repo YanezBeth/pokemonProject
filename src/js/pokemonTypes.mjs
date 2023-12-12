@@ -156,9 +156,6 @@ export async function allPokemonByType(type) {
   }
 }
 
-
-
-
 // async function fetchPokemonByType(type, page = 1, perPage = 10) {
 //   try {
 //     // Use the where method to filter cards by type
